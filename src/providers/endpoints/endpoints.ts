@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -6,7 +5,7 @@ export class EndpointsProvider {
 
   public route_api: string;
 
-  constructor(public http: HttpClient) {
+  constructor() {
     this.route_api = 'http://unclephillwebapinfes.azurewebsites.net/api/'
   }
 
@@ -45,6 +44,10 @@ export class EndpointsProvider {
   }
 
   //User
+  public login(Email, Password){
+    return this.route_api + 'api/User?Email=' + Email + '&Password=' + Password;
+  }
+
   public getUser(UserId): string{
     return this.route_api + 'api/User?UserId='+ UserId;
   }

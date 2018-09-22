@@ -13,6 +13,12 @@ import { TakerProvider } from '../providers/taker/taker';
 import { CompanyProvider } from '../providers/company/company';
 import { ShippingCompanyProvider } from '../providers/shipping-company/shipping-company';
 import { NfseProvider } from '../providers/nfse/nfse';
+import { SingletonProvider } from '../providers/singleton/singleton';
+import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
+
+import { Network } from '@ionic-native/network';
+import { Device } from '@ionic-native/device';
+import { HTTP } from '@ionic-native/http';
 
 @NgModule({
   declarations: [
@@ -36,7 +42,12 @@ import { NfseProvider } from '../providers/nfse/nfse';
     TakerProvider,
     CompanyProvider,
     ShippingCompanyProvider,
-    NfseProvider
+    NfseProvider,
+    SingletonProvider,
+    ErrorHandlerProvider,
+    Network,
+    Device,
+    HTTP
   ]
 })
 export class AppModule {}

@@ -1,17 +1,28 @@
-import { HttpClient } from '@angular/common/http';
+import { EndpointsProvider } from './../endpoints/endpoints';
+import { HTTP } from '@ionic-native/http';
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the UserServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class UserServiceProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello UserServiceProvider Provider');
+  public user: any;
+
+  constructor(
+    public endpoint: EndpointsProvider,
+    public http: HTTP
+  ) {
+    
+  }
+
+  login(email, password){
+    return new Promise((resolve, reject)=>{
+      this.http.post(this.endpoint.login(email, password), {}, {}).then((data)=>{
+        this.user = data;
+        resolve(data);
+      }).catch((error)=>{
+        reject(error);
+      })
+    });
   }
 
 }

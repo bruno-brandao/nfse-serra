@@ -1,3 +1,51 @@
 page-login {
 
+	.top{
+		display: none;
+		top: 30px;
+		width: 100%;
+		display: block;
+		position: relative;
+		
+		.isKeyboardActive{
+			margin: 15px;
+			height: 10% !important;
+	
+			img{
+				display:block;
+				margin:auto;
+				max-height: 40px;
+			}
+		}
+    }
+
+	.facebook{
+		color: whitesmoke;
+		.facebook-content{	 
+			text-align: center;
+			button{
+				ion-icon{
+					padding: 0%;
+				}
+				display: inline-block;
+				text-transform: none !important;
+			}
+		}
+    }
+    
+	.spin{
+		background: transparent;
+		color: white;
+		height: 100%;
+		width: 100%;
+		.spin-content{
+			padding-top: 40%;
+			ion-spinner * {
+				width: 40px;
+				height: 40px;
+				stroke: white;
+				//fill: #222;
+			}
+		}
+	}
 }

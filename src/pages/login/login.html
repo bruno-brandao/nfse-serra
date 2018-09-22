@@ -1,18 +1,63 @@
-<!--
-  Generated template for the LoginPage page.
+<ion-content class="content">
+	<div text-center class="spin" *ngIf="!todo">
+		<div class="spin-content">
+			<ion-spinner name="crescent"></ion-spinner>
+		</div>
+	</div>
+	<div class="top">
+		<div class="isKeyboardActive">
+			<img class="animated zoomIn" src="assets/imgs/logo.png" />
+		</div>
+		<ion-row>
+			<ion-col>
+				<ion-list inset class="no-border transition">
+					<form [formGroup]="todo" (ngSubmit)="login()">
+						<ion-item class="inputs">
+							<ion-input autocomplete="on" autocorrect="on" type="email" autocomplete="on" autocorrect="on" formControlName="email"
+								placeholder="Email"></ion-input>
+						</ion-item>
+						<br/>
+						<ion-item class="inputs">
+							<ion-input type="password" formControlName="password" placeholder="Senha"></ion-input>
+						</ion-item>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>login</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
+						<!-- <ion-item class="remember" no-padding no-lines>
+							<ion-label>Lembrar-me</ion-label>
+							<ion-checkbox class="checkbox" formControlName="remember"></ion-checkbox>
+						</ion-item> -->
+						<ion-row>
+							<ion-col col-12>
+								<button ion-button type="submit" class="btn-login" color="homelist4" block [disabled]="!todo.valid">
+									Entrar
+								</button>
+							</ion-col>
+						</ion-row>
+					</form>
+					<!-- <div class="bottom-login">
+						<ion-row>
+							<ion-col col-12>
+								<a (click)="recoverPassword()">Recuperar Senha?</a>
+							</ion-col>
+						</ion-row>
+					</div> -->
+				</ion-list>
+			</ion-col>
+		</ion-row>
+		<div class="facebook">
+			<ion-row>
+				<ion-col col-5>
+					<hr/>
+				</ion-col>
+				<ion-col col-2>
+					OU
+				</ion-col>
+				<ion-col col-5>
+					<hr/>
+				</ion-col>
+			</ion-row>
+			<div class="facebook-content">
+				<button ion-button clear icon-only (click)="openRegisterPage()"><ion-icon name="person-add" color="white"></ion-icon> &nbsp;Não tem uma conta? Cadastre-se</button>
+			</div>
+		</div>
+	</div>
 </ion-content>
