@@ -1,5 +1,7 @@
 {
   "name": "nfse-serra",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

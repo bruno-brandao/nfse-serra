@@ -3,18 +3,20 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserServiceProvider } from '../providers/user-service/user-service';
+import { EndpointsProvider } from '../providers/endpoints/endpoints';
+import { ServicesProvider } from '../providers/services/services';
+import { TakerProvider } from '../providers/taker/taker';
+import { CompanyProvider } from '../providers/company/company';
+import { ShippingCompanyProvider } from '../providers/shipping-company/shipping-company';
+import { NfseProvider } from '../providers/nfse/nfse';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ListPage
   ],
   imports: [
     BrowserModule,
@@ -23,14 +25,18 @@ import { UserServiceProvider } from '../providers/user-service/user-service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserServiceProvider
+    UserServiceProvider,
+    EndpointsProvider,
+    ServicesProvider,
+    TakerProvider,
+    CompanyProvider,
+    ShippingCompanyProvider,
+    NfseProvider
   ]
 })
 export class AppModule {}
