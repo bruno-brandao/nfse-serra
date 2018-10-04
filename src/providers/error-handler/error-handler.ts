@@ -1,11 +1,7 @@
 import { Injectable, Injector, ErrorHandler } from '@angular/core';
 import { IonicErrorHandler } from 'ionic-angular';
-//import { Pro } from '@ionic/pro';
-import { SingletonProvider } from '../singleton/singleton'
+import { SingletonProvider } from '../singleton/singleton';
 
-// Pro.init('41229e9c', {
-//   appVersion: '0.0.10'
-// })
 @Injectable()
 export class ErrorHandlerProvider implements ErrorHandler {
   ionicErrorHandler: IonicErrorHandler;
@@ -35,6 +31,8 @@ export class ErrorHandlerProvider implements ErrorHandler {
     try {
       if(typeof error === 'string'){
         message = error;
+      }else if(error.status !== 0 && error.error.Message){
+        message = error.error.Message;
       }else if (error.status !== 0 && JSON.parse(error._body).message && JSON.parse(error._body).message != '') {
         message = JSON.parse(error._body).message;
       } else if(error.status !== 0 && typeof (error) === "object"){

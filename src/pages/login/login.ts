@@ -22,11 +22,9 @@ export class LoginPage {
     public singleton: SingletonProvider,
     public userProvider: UserServiceProvider
   ) {
-    let userEmail;
-    let userPassword
     this.todo = this.formBuilder.group({
-        email: [userEmail || '', Validators.required],
-        password: [userPassword || '', Validators.required],
+        email: ['', Validators.required],
+        password: ['', Validators.required],
     });
   }
 
@@ -47,7 +45,7 @@ export class LoginPage {
 
       this.userProvider.login(this.todo.value.email, this.todo.value.password).then((data) => {
         this.singleton.dismissLoading();
-          this.navCtrl.setRoot("TabsPage", {updateLists: true});
+          this.navCtrl.setRoot("CompanyPage");
       }).catch((error) => {
         this.singleton.dismissLoading();
           this.singleton.presentToast(this.errorProvider.toString(error));

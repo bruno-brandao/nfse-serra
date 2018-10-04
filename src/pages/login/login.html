@@ -14,17 +14,13 @@
 					<form [formGroup]="todo" (ngSubmit)="login()">
 						<ion-item class="inputs">
 							<ion-input autocomplete="on" autocorrect="on" type="email" autocomplete="on" autocorrect="on" formControlName="email"
-								placeholder="Email"></ion-input>
+								placeholder="Email" required></ion-input>
 						</ion-item>
 						<br/>
 						<ion-item class="inputs">
 							<ion-input type="password" formControlName="password" placeholder="Senha"></ion-input>
 						</ion-item>
 
-						<!-- <ion-item class="remember" no-padding no-lines>
-							<ion-label>Lembrar-me</ion-label>
-							<ion-checkbox class="checkbox" formControlName="remember"></ion-checkbox>
-						</ion-item> -->
 						<ion-row>
 							<ion-col col-12>
 								<button ion-button type="submit" class="btn-login" color="homelist4" block [disabled]="!todo.valid">
@@ -48,7 +44,7 @@
 				<ion-col col-5>
 					<hr/>
 				</ion-col>
-				<ion-col col-2>
+				<ion-col col-2 text-center style="color:dimgray;">
 					OU
 				</ion-col>
 				<ion-col col-5>
