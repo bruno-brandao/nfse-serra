@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,18 +12,27 @@ export class MyApp {
 
   rootPage: any = 'LoginPage';
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen,
+    private storage: Storage,
+  ) {
+    this.storage.get("user").then((data)=>{
+
+    });
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Empresa', component: 'CompanyPage' },
-      { title: 'Serviços', component: 'ServicePage' },
-      { title: 'Clientes', component: 'TakerPage' },
-      { title: 'Transportador', component: 'ShippingCompanyPage' },
-      { title: 'Notas', component: 'NfsePage' }
+      { title: 'Home', component: 'HomePage', icon: '' },
+      { title: 'Empresa', component: 'CompanyPage', icon: '' },
+      { title: 'Serviços', component: 'ServicePage', icon: '' },
+      { title: 'Clientes', component: 'TakerPage', icon: '' },
+      { title: 'Transportador', component: 'ShippingCompanyPage', icon: '' },
+      { title: 'Notas', component: 'NfsePage', icon: '' }
     ];
 
   }
@@ -43,6 +53,7 @@ export class MyApp {
   }
 
   logout(){
+    this.storage.remove("user");
     this.nav.setRoot("LoginPage");
   }
 }

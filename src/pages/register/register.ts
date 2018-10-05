@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
-import {ValidationProvider as ValidationService} from '../../providers/validation/validation';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { ValidationProvider as ValidationService } from '../../providers/validation/validation';
 import { SingletonProvider } from '../../providers/singleton/singleton';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -22,6 +23,7 @@ export class RegisterPage {
     public navParams: NavParams,
     private formBuilder: FormBuilder,
     public singleton: SingletonProvider,
+    private storage: Storage,
     public userProvider: UserServiceProvider
   ) {
     this.group_fields = {
@@ -51,8 +53,10 @@ export class RegisterPage {
             .register(this.todo.value)
             .then((data: string) => {
                 this.singleton.dismissLoading();
-                this.singleton.presentToast(data);
-                this.navCtrl.pop();
+                this.singleton.presentToast("Conta criada com sucesso");
+                this.storage.set("user", data);
+                this.userProvider.user = data;
+                this.navCtrl.setRoot("HomePage");
             }).catch((error) => {
                 this.singleton.dismissLoading();
                 this.singleton.presentToast(this.errorHandler.toString(error));

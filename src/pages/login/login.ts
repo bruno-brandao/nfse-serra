@@ -1,3 +1,4 @@
+import { Storage } from '@ionic/storage';
 import { SingletonProvider } from './../../providers/singleton/singleton';
 import { UserServiceProvider } from './../../providers/user-service/user-service';
 import { ErrorHandlerProvider } from './../../providers/error-handler/error-handler';
@@ -20,6 +21,7 @@ export class LoginPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public singleton: SingletonProvider,
+    private storage: Storage,
     public userProvider: UserServiceProvider
   ) {
     this.todo = this.formBuilder.group({
@@ -45,6 +47,8 @@ export class LoginPage {
 
       this.userProvider.login(this.todo.value.email, this.todo.value.password).then((data) => {
         this.singleton.dismissLoading();
+        this.storage.set("user", data);
+        this.userProvider.user = data;
           this.navCtrl.setRoot("HomePage");
       }).catch((error) => {
         this.singleton.dismissLoading();
