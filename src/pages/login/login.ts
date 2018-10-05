@@ -45,7 +45,7 @@ export class LoginPage {
 
       this.userProvider.login(this.todo.value.email, this.todo.value.password).then((data) => {
         this.singleton.dismissLoading();
-          this.navCtrl.setRoot("CompanyPage");
+          this.navCtrl.setRoot("HomePage");
       }).catch((error) => {
         this.singleton.dismissLoading();
           this.singleton.presentToast(this.errorProvider.toString(error));

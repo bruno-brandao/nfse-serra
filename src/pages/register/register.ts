@@ -39,25 +39,25 @@ export class RegisterPage {
   }
 
   submit() {
-  if(!this.singleton.isOnline()){
-    this.singleton.presentToast("Conecte-se a internet e tente novamente");
-    return;
-  }
-  if (this.todo.valid) {
-    this.todo.addControl("LastName", new FormControl(this.todo.value.Name));
+    if(!this.singleton.isOnline()){
+      this.singleton.presentToast("Conecte-se a internet e tente novamente");
+      return;
+    }
+    if (this.todo.valid) {
+      this.todo.addControl("LastName", new FormControl(this.todo.value.Name));
 
-    this.singleton.showLoading("Registrando Usuário...");
-      this.userProvider
-          .register(this.todo.value)
-          .then((data: string) => {
-              this.singleton.dismissLoading();
-              this.singleton.presentToast(data);
-              this.navCtrl.pop();
-          }).catch((error) => {
-              this.singleton.dismissLoading();
-              this.singleton.presentToast(this.errorHandler.toString(error));
-          });
-      }
+      this.singleton.showLoading("Registrando Usuário...");
+        this.userProvider
+            .register(this.todo.value)
+            .then((data: string) => {
+                this.singleton.dismissLoading();
+                this.singleton.presentToast(data);
+                this.navCtrl.pop();
+            }).catch((error) => {
+                this.singleton.dismissLoading();
+                this.singleton.presentToast(this.errorHandler.toString(error));
+            });
+        }
   }
 
 }
