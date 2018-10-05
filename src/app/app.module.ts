@@ -20,6 +20,7 @@ import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
 import { Network } from '@ionic-native/network';
 import { Device } from '@ionic-native/device';
 import { HTTP } from '@ionic-native/http';
+import { ValidationProvider } from '../providers/validation/validation';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { HTTP } from '@ionic-native/http';
     ErrorHandlerProvider,
     Network,
     Device,
-    HTTP
+    HTTP,
+    ValidationProvider
   ]
 })
 export class AppModule {}

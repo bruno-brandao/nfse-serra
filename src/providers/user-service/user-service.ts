@@ -15,12 +15,8 @@ export class UserServiceProvider {
   }
 
   login(email, password){
-    let data = {
-      email: email,
-      password: password
-    }
     return new Promise((resolve, reject)=>{
-      this.http.post(this.endpoint.login(email, password), data).subscribe(data => {
+      this.http.post(this.endpoint.login(email, password), {}).subscribe(data => {
         this.user = data;
         resolve(data);
       }, err => {
@@ -30,4 +26,15 @@ export class UserServiceProvider {
     });
   }
 
+  register(data){
+    return new Promise((resolve, reject)=>{
+      this.http.post(this.endpoint.setUser(), data).subscribe(data => {
+        this.user = data;
+        resolve(data);
+      }, err => {
+        console.log(err);
+        reject(err);
+      });
+    });
+  }
 }
