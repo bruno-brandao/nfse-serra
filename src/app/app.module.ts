@@ -21,6 +21,7 @@ import { Network } from '@ionic-native/network';
 import { Device } from '@ionic-native/device';
 import { HTTP } from '@ionic-native/http';
 import { ValidationProvider } from '../providers/validation/validation';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ValidationProvider } from '../providers/validation/validation';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
