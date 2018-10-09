@@ -18,7 +18,7 @@ export class LoginPage {
   constructor(
     public errorProvider: ErrorHandlerProvider,
     private formBuilder: FormBuilder,
-    public navCtrl: NavController,
+    public navCtrl: NavController, 
     public navParams: NavParams,
     public singleton: SingletonProvider,
     private storage: Storage,
@@ -38,24 +38,23 @@ export class LoginPage {
   }
 
   login(){
-    this.navCtrl.setRoot("HomePage");
-		// if(!this.singleton.isOnline()){
-		// 	this.singleton.presentToast("Conecte-se a internet e tente novamente");
-		// 	return;
-		// }
-    // if (this.todo.valid) {
-    //   this.singleton.showLoading("Por favor aguarde, efetuando operação...");
+		if(!this.singleton.isOnline()){
+			this.singleton.presentToast("Conecte-se a internet e tente novamente");
+			return;
+		}
+    if (this.todo.valid) {
+      this.singleton.showLoading("Por favor aguarde, efetuando operação...");
 
-      // this.userProvider.login(this.todo.value.email, this.todo.value.password).then((data) => {
-      //   this.singleton.dismissLoading();
-      //   this.storage.set("user", data);
-      //   this.userProvider.user = data;
-      //     this.navCtrl.setRoot("HomePage");
-      // }).catch((error) => {
-      //   this.singleton.dismissLoading();
-      //     this.singleton.presentToast(this.errorProvider.toString(error));
-      // });
-    //}
+      this.userProvider.login(this.todo.value.email, this.todo.value.password).then((data) => {
+        this.singleton.dismissLoading();
+        this.storage.set("user", data);
+        this.userProvider.user = data;
+          this.navCtrl.setRoot("HomePage");
+      }).catch((error) => {
+        this.singleton.dismissLoading();
+          this.singleton.presentToast(this.errorProvider.toString(error));
+      });
+    }
   }
 
 }

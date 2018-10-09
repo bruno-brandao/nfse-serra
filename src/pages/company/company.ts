@@ -12,7 +12,10 @@ export class CompanyPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CompanyPage');
+  }
+
+  editCompany(){
+    this.navCtrl.push("EditCompanyPage")
   }
 
 }

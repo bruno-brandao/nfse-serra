@@ -1,0 +1,51 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cadastrar empresa</ion-title>
+
+    <ion-buttons end>
+        <button ion-button icon-only clear type="submit" form="ngForm" [disabled]="!todo.valid">
+            Salvar
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="todo" id="ngForm" #registerForm="ngForm" (ngSubmit)="submit()">			
+              <ion-list>
+                  <ion-item>
+                      <ion-label floating><span class="required">*</span> Nome Completo</ion-label>
+                      <ion-input autocomplete="on" autocorrect="on" formControlName="Name" type="text"></ion-input>
+                  </ion-item>
+                  <validation-messages [control]="todo.controls.Name"></validation-messages>
+  
+                  <ion-item>
+                      <ion-label floating><span class="required">*</span> CPF</ion-label>
+                      <ion-input type="text" maxlength="14" formControlName="CPF" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-input>
+                  </ion-item>
+                  <validation-messages [control]="todo.controls.CPF"></validation-messages>
+  
+                  <ion-item>
+                      <ion-label floating><span class="required">*</span> E-mail</ion-label>
+                      <ion-input autocomplete="on" autocorrect="on" formControlName="Email" type="email"></ion-input>
+                  </ion-item>
+                  <validation-messages [control]="todo.controls.Email"></validation-messages>
+  
+                  <ion-item *ngIf="group_fields.Password">
+                      <ion-label floating><span class="required">*</span> Senha</ion-label>
+                      <ion-input formControlName="Password" type="password"></ion-input>
+                  </ion-item>
+                  <validation-messages [control]="todo.controls.Password"></validation-messages>
+  
+                  <ion-item *ngIf="todo.controls.Password != ''">
+                      <ion-label floating><span class="required">*</span> Confirme a Senha</ion-label>
+                      <ion-input formControlName="confirmPassword" type="password"></ion-input>
+                  </ion-item>
+                  <validation-messages [control]="todo.controls.confirmPassword"></validation-messages>
+                  
+              </ion-list>
+      </form>
+</ion-content>
