@@ -27,12 +27,12 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: 'HomePage', icon: '' },
-      { title: 'Empresa', component: 'CompanyPage', icon: '' },
-      { title: 'Serviços', component: 'ServicePage', icon: '' },
-      { title: 'Clientes', component: 'TakerPage', icon: '' },
-      { title: 'Transportador', component: 'ShippingCompanyPage', icon: '' },
-      { title: 'Notas', component: 'NfsePage', icon: '' }
+      { title: 'Home', component: 'HomePage', icon: 'ios-home-outline' },
+      { title: 'Empresa', component: 'CompanyPage', icon: 'ios-podium-outline' },
+      { title: 'Serviços', component: 'ServicePage', icon: 'ios-list-outline' },
+      { title: 'Clientes', component: 'TakerPage', icon: 'ios-people-outline' },
+      { title: 'Transportador', component: 'ShippingCompanyPage', icon: 'ios-clipboard-outline' },
+      { title: 'Notas', component: 'NfsePage', icon: 'ios-document-outline' }
     ];
 
   }
