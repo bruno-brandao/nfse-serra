@@ -1,3 +1,4 @@
+import { Storage } from '@ionic/storage';
 import { EndpointsProvider } from './../endpoints/endpoints';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -9,9 +10,9 @@ export class UserServiceProvider {
 
   constructor(
     public endpoint: EndpointsProvider,
-    public http: HttpClient
+    public http: HttpClient,
+    public storage: Storage
   ) {
-    
   }
 
   login(email, password){
@@ -37,6 +38,16 @@ export class UserServiceProvider {
         reject(err);
       });
     });
+  }
+
+  getUserStorage(){
+    return new Promise(resolve=>{
+      this.storage.get('user').then(data=>{
+        if(data)
+          this.user = data;
+        resolve(data);
+      })
+    })
   }
 
   getToken(){

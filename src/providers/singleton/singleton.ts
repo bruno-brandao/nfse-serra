@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Loading, AlertController, LoadingController, ToastController, App, Platform } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 import { Device } from '@ionic-native/device';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { UserServiceProvider } from '../user-service/user-service'
 
 @Injectable()
 export class SingletonProvider {
@@ -15,13 +13,11 @@ export class SingletonProvider {
 	constructor(
 		public alertCtrl: AlertController,
 		public device: Device,
-		public http: HttpClient,
 		public loadingCtrl: LoadingController,
 		public network: Network,
 		public platform: Platform,
 		public toastCtrl: ToastController,
-		public app: App,
-		private userService: UserServiceProvider
+		public app: App
 	) {
 		this.onDevice = this.platform.is('cordova');
 	}
@@ -83,70 +79,5 @@ export class SingletonProvider {
 		}
 		return isOnline;
 	}
-
-	// authGet(url, data = null, extra_headers = null) {
-	// 	let headers = new HttpHeaders({
-	// 		'Content-Type': 'application/json',
-	// 		'Accept': 'application/json',
-	// 		'Authorization': 'Bearer ' + this.userService.user.SessionId
-	// 	});
-
-	// 	if (data) {
-	// 		for (var key in extra_headers) {
-	// 			headers.append(key, extra_headers[key]);
-	// 		}
-	// 	}
-	// 	if (extra_headers) {
-	// 			for (var key in extra_headers) {
-	// 					_jwtHeader.append(key, extra_headers[key]);
-	// 			}
-	// 	}
-	// 	const httpOptions = {
-	// 		headers: headers
-	// 		params: new HttpParams(
-				
-	// 		)
-	// 	};
-	// 	return new Promise((resolve, reject) => {
-	// 		this.http.get(url, httpOptions).subscribe(data => {
-	// 			resolve(data);
-	// 		}, error => {
-	// 			reject(error);
-	// 		});
-	// 	});
-
-	// }
-
-	// authPut(url, data = null, extra_headers = null) {
-	// 	let headers = new HttpHeaders({
-	// 		'Content-Type': 'application/json',
-	// 		'Accept': 'application/json',
-	// 		'Authorization': 'Bearer ' + this.userService.user.SessionId
-	// 	});
-
-	// 	if (extra_headers) {
-	// 		for (var key in extra_headers) {
-	// 			headers.append(key, extra_headers[key]);
-	// 		}
-	// 	}
-	// 	const httpOptions = {
-	// 		headers: headers
-	// 	};
-	// 	return new Promise((resolve, reject) => {
-	// 		this.http.put(url, data, httpOptions).subscribe(data => {
-	// 			resolve(data);
-	// 		}, error => {
-	// 			reject(error);
-	// 		});
-	// 	});
-	// }
-
-	// authPost(url, data = null, extra_headers = null) {
-
-	// }
-
-	// authDelete(url, data = null, extra_headers = null) {
-
-	// }
 
 }

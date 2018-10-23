@@ -1,3 +1,4 @@
+import { UserServiceProvider } from './../providers/user-service/user-service';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -19,10 +20,8 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     private storage: Storage,
+    private userProvider: UserServiceProvider
   ) {
-    this.storage.get("user").then((data)=>{
-
-    });
     this.initializeApp();
 
     // used for an example of ngFor and navigation

@@ -5,7 +5,7 @@ import { UserServiceProvider } from '../user-service/user-service';
 
 @Injectable()
 export class CompanyProvider {
-
+  company: any;
   constructor(
     public endpoints: EndpointsProvider,
     public http: HttpClient,
@@ -16,11 +16,21 @@ export class CompanyProvider {
 
   getUserCompany(){
     return new Promise((resolve, reject)=>{
-      console.log(this.userProvider.user);
       this.http.get(this.endpoints.getCompanyByUserId(this.userProvider.user.UserId))
       .subscribe(data =>{
+        this.company = data;
         resolve(data);
       }, error =>{
+        reject(error);
+      });
+    });
+  }
+
+  getCompanyDataInReceita(cnpj){
+    return new Promise((resolve, reject)=>{
+      this.http.get('https://www.receitaws.com.br/v1/cnpj/' + cnpj).subscribe(data=>{
+        resolve(data);
+      }, error=>{
         reject(error);
       });
     });
