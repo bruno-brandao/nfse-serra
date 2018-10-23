@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserServiceProvider {
 
-  public user: any;
+  public user: any = {};
 
   constructor(
     public endpoint: EndpointsProvider,
@@ -16,7 +16,7 @@ export class UserServiceProvider {
 
   login(email, password){
     return new Promise((resolve, reject)=>{
-      this.http.post(this.endpoint.login(email, password), {}).subscribe(data => {
+      this.http.post(this.endpoint.login(email, password), {}).subscribe((data: any) => {
         this.user = data;
         resolve(data);
       }, err => {
@@ -28,13 +28,18 @@ export class UserServiceProvider {
 
   register(data){
     return new Promise((resolve, reject)=>{
-      this.http.post(this.endpoint.setUser(), data).subscribe(data => {
+      this.http.post(this.endpoint.setUser(), data).subscribe((data: any) => {
         this.user = data;
+        console.log(this.user);
         resolve(data);
       }, err => {
         console.log(err);
         reject(err);
       });
     });
+  }
+
+  getToken(){
+    return this.user.SessionHash;
   }
 }

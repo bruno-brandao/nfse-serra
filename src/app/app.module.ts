@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,6 +22,8 @@ import { Device } from '@ionic-native/device';
 import { HTTP } from '@ionic-native/http';
 import { ValidationProvider } from '../providers/validation/validation';
 import { IonicStorageModule } from '@ionic/storage';
+import { TokenInterceptor } from '../providers/token-interceptor/token.interceptor';
+import { JwtInterceptor } from '../providers/token-interceptor/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,18 @@ import { IonicStorageModule } from '@ionic/storage';
     Network,
     Device,
     HTTP,
-    ValidationProvider
+    JwtInterceptor,
+    ValidationProvider,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
   ]
 })
 export class AppModule {}
