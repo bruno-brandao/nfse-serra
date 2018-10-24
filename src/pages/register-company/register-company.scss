@@ -25,14 +25,24 @@ page-register-company {
         height: 20vh;
         width: 100%;
     }
-
-    .icon-header{
-        margin-top: 15%;
-        height: 30%;
+    .card-image{
+        border-radius: 15px !important;
     }
+    .card-text{    
+        border-radius: 15px !important;
+        width: 80%;
+        position: relative;
+        top: -30px;
+        margin: auto;    
+        margin-top: 0 !important;
+    }
+    // .icon-header{
+    //     margin-top: 15%;
+    //     height: 30%;
+    // }
 
     .text-header{
-        padding: 10% 15% 0 15%;
+        padding: 5%;
     }
 
     .text{
