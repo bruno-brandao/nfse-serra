@@ -36,4 +36,15 @@ export class CompanyProvider {
     });
   }
 
+  createCompany(data){
+    return new Promise((resolve, reject)=>{
+      this.http.post(this.endpoints.setCompany(), data).subscribe((data: any) => {
+        this.company = data;
+        resolve(data);
+      }, err => {
+        reject(err);
+      });
+    });
+  }
+
 }

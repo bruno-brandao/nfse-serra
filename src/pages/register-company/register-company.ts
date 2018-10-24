@@ -5,7 +5,21 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
-
+export class Company{
+    UserId;
+    CNPJ;
+    IM;
+    IE;
+    Name;
+    NameFantasy;
+    CEP;
+    Street;
+    Neighborhood;
+    City;
+    State;
+    Telephone;
+    Email;
+}
 
 @IonicPage()
 @Component({
@@ -13,26 +27,11 @@ import { ErrorHandlerProvider } from '../../providers/error-handler/error-handle
   templateUrl: 'register-company.html',
 })
 export class RegisterCompanyPage {
-
+  company: Company;
   @ViewChild(Slides) slides: Slides;
   loading: boolean = false;
   hasError: boolean = false;
   cnpj: any;
-  company:{
-    UserId: null,
-    CNPJ: null,
-    IM: null,
-    IE: null,
-    Name: null,
-    NameFantasy: null,
-    CEP: null,
-    Street: null,
-    Neighborhood: null,
-    City: null,
-    State: null,
-    Telephone: null,
-    Email: null
-  }
 
   constructor(
     public companyProvider: CompanyProvider,
@@ -54,10 +53,11 @@ export class RegisterCompanyPage {
     if(this.cnpj.length == 18){
       this.singleton.showLoading("Buscando as informações da sua empresa...");
       this.companyProvider.getCompanyDataInReceita(this.cnpj.replace(/\D/g, '')).then((data: any)=>{
-        this.singleton.dismissLoading();
         if(data.status == "ERROR"){
+          this.singleton.dismissLoading();
           this.singleton.presentToast(data.message);
         }else{
+          this.company = new Company();
           this.company.UserId = this.userProvider.user.UserId;
           this.company.CNPJ = this.cnpj;
           this.company.Email = this.userProvider.user.Email;
@@ -69,9 +69,16 @@ export class RegisterCompanyPage {
           this.company.City = data.municipio;
           this.company.Neighborhood = data.bairro;
           this.company.Street = data.logradouro;
-          this.nextSlide();
+          this.companyProvider.createCompany(this.company).then(()=>{
+            this.singleton.dismissLoading();
+            this.navCtrl.setRoot("HomePage");
+          }).catch(error=>{
+            this.singleton.dismissLoading();
+            this.singleton.presentToast(this.errorHandler.toString(error));
+          });
         }
       }).catch(error=>{
+        console.log(error)
         this.singleton.dismissLoading();
         this.singleton.presentToast("Não encontramos informações deste CNPJ, verifique os números e tente novamente");
       });
