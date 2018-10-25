@@ -41,13 +41,17 @@ export class UserServiceProvider {
   }
 
   getUserStorage(){
-    return new Promise(resolve=>{
-      this.storage.get('user').then(data=>{
-        if(data)
-          this.user = data;
-        resolve(data);
+      return new Promise(resolve=>{
+        if(!this.user){
+          this.storage.get('user').then(data=>{
+            if(data)
+              this.user = data;
+            resolve(data);
+          })
+        } else{
+          resolve(this.user);
+        }
       })
-    })
   }
 
   getToken(){

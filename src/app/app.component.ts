@@ -52,6 +52,7 @@ export class MyApp {
   }
 
   logout(){
+    this.userProvider.user = null;
     this.storage.remove("user");
     this.nav.setRoot("LoginPage");
   }
