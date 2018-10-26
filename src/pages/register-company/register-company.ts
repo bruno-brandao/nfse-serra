@@ -52,19 +52,20 @@ export class RegisterCompanyPage {
   getCompanyData(){
     if(this.cnpj.length == 18){
       this.singleton.showLoading("Buscando as informações da sua empresa...");
-      this.companyProvider.getCompanyDataInReceita(this.cnpj.replace(/\D/g, '')).then((data: any)=>{
+      let cnpjNumber = this.cnpj.replace(/\D/g, '');
+      this.companyProvider.getCompanyDataInReceita(cnpjNumber).then((data: any)=>{
         if(data.status == "ERROR"){
           this.singleton.dismissLoading();
           this.singleton.presentToast(data.message);
         }else{
           this.company = new Company();
           this.company.UserId = this.userProvider.user.UserId;
-          this.company.CNPJ = this.cnpj;
+          this.company.CNPJ = cnpjNumber;
           this.company.Email = this.userProvider.user.Email;
-          this.company.Telephone = data.telefone;
+          this.company.Telephone = data.telefone.split('/')[0].replace(/\D/g, '');
           this.company.Name = data.nome;
           this.company.NameFantasy = data.fantasia;
-          this.company.CEP = data.cep;
+          this.company.CEP = data.cep.replace(/\D/g, '');
           this.company.State = data.uf;
           this.company.City = data.municipio;
           this.company.Neighborhood = data.bairro;

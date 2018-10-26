@@ -2,6 +2,7 @@ import { Storage } from '@ionic/storage';
 import { EndpointsProvider } from './../endpoints/endpoints';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Events } from 'ionic-angular';
 
 @Injectable()
 export class UserServiceProvider {
@@ -10,6 +11,7 @@ export class UserServiceProvider {
 
   constructor(
     public endpoint: EndpointsProvider,
+    public events: Events,
     public http: HttpClient,
     public storage: Storage
   ) {
@@ -42,7 +44,7 @@ export class UserServiceProvider {
 
   getUserStorage(){
       return new Promise(resolve=>{
-        if(!this.user){
+        if(this.user != {} || !this.user){
           this.storage.get('user').then(data=>{
             if(data)
               this.user = data;
@@ -52,6 +54,10 @@ export class UserServiceProvider {
           resolve(this.user);
         }
       })
+  }
+
+  logout(){
+    this.events.publish('user:logout');
   }
 
   getToken(){
