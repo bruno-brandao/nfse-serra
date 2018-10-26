@@ -1,18 +1,86 @@
-
 <ion-header>
 
-  <ion-navbar #content color="primary">
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-      </button>
-    <ion-title>Meu MEI</ion-title>
-  </ion-navbar>
+    <ion-navbar #content color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Minha Empresa</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-    <ion-fab right bottom>
+    <ion-spinner name="crescent" *ngIf="!company"></ion-spinner>
+    <div *ngIf="company">
+        <ion-list>
+            <ion-list-header>
+                <ion-icon name="pricetag" item-start></ion-icon>
+                Dados da empresa
+            </ion-list-header>
+            <ion-item>
+                <ion-label floating>Razão Social</ion-label>
+                <ion-input type="text" [(ngModel)]="company.Name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Nome Fantasia</ion-label>
+                <ion-input type="text" [(ngModel)]="company.NameFantasy"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>CNPJ</ion-label>
+                <ion-input type="text" [(ngModel)]="company.CNPJ"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Inscrição Estadual</ion-label>
+                <ion-input type="text" [(ngModel)]="company.IE"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Inscrição Municipal</ion-label>
+                <ion-input type="text" [(ngModel)]="company.IM"></ion-input>
+            </ion-item>
+        </ion-list>
+        <ion-list>
+            <ion-list-header>
+                <ion-icon name="contact" item-start></ion-icon>
+                Contato
+            </ion-list-header>
+            <ion-item>
+                <ion-label floating>Telefone</ion-label>
+                <ion-input type="text" [(ngModel)]="company.Telephone"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input type="text" [(ngModel)]="company.Email"></ion-input>
+            </ion-item>
+        </ion-list>
+        <ion-list>
+            <ion-list-header>
+                <ion-icon name="pin" item-start></ion-icon>
+                Endereço
+            </ion-list-header>
+            <ion-item>
+                <ion-label floating>Rua</ion-label>
+                <ion-input type="text" [(ngModel)]="company.Street"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Bairro</ion-label>
+                <ion-input type="text" [(ngModel)]="company.Neighborhood"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Cidade</ion-label>
+                <ion-input type="text" [(ngModel)]="company.City"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Estado</ion-label>
+                <ion-input type="text" [(ngModel)]="company.State"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>CEP</ion-label>
+                <ion-input type="text" [(ngModel)]="company.CEP"></ion-input>
+            </ion-item>
+        </ion-list>
+    </div>
+    <!-- <ion-fab right bottom>
         <button ion-fab (click)="editCompany()"><ion-icon name="add"></ion-icon></button>
-    </ion-fab>
+    </ion-fab> -->
 </ion-content>

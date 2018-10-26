@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/do';
 import {
   HttpRequest,
   HttpHandler,
@@ -28,7 +29,6 @@ export class TokenInterceptor implements HttpInterceptor {
         // do stuff with response if you want
       }
     }, (err: any) => {
-      console.log(err)
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
           this.auth.logout();

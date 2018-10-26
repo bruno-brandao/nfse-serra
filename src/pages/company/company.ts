@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { CompanyProvider } from '../../providers/company/company';
+import { SingletonProvider } from '../../providers/singleton/singleton';
+import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
 
 @IonicPage()
 @Component({
@@ -8,10 +11,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CompanyPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  company: any;
+
+  constructor(
+    public companyProvider: CompanyProvider,
+    public errorHandler: ErrorHandlerProvider,
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public singleton: SingletonProvider
+  ) {
   }
 
   ionViewDidLoad() {
+    if(this.companyProvider.company)
+      this.company = this.companyProvider.company[0];
+    else
+      this.companyProvider.getCompanyInStorage().then(data =>{
+        this.company = data[0];
+      }).catch(error => {
+        this.singleton.presentToast(this.errorHandler.toString(error));
+      });
   }
 
   editCompany(){

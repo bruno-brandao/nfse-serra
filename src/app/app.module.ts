@@ -23,7 +23,6 @@ import { HTTP } from '@ionic-native/http';
 import { ValidationProvider } from '../providers/validation/validation';
 import { IonicStorageModule } from '@ionic/storage';
 import { TokenInterceptor } from '../providers/token-interceptor/token.interceptor';
-import { JwtInterceptor } from '../providers/token-interceptor/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,16 +54,10 @@ import { JwtInterceptor } from '../providers/token-interceptor/jwt.interceptor';
     Network,
     Device,
     HTTP,
-    JwtInterceptor,
     ValidationProvider,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
       multi: true
     }
   ]
