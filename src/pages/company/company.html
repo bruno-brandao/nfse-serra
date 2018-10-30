@@ -5,6 +5,12 @@
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>Minha Empresa</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only clear type="button" (click)="saveCompanyData()">
+                Salvar
+            </button>
+        </ion-buttons>
     </ion-navbar>
 
 </ion-header>
@@ -28,7 +34,7 @@
             </ion-item>
             <ion-item>
                 <ion-label floating>CNPJ</ion-label>
-                <ion-input type="text" [(ngModel)]="company.CNPJ"></ion-input>
+                <ion-input type="text" [(ngModel)]="company.CNPJ" maxLength="18" [brmasker]="{mask:'00.000.000/0000-00', len:18}"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label floating>Inscrição Estadual</ion-label>

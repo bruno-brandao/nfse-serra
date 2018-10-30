@@ -24,10 +24,10 @@ export class CompanyPage {
 
   ionViewDidLoad() {
     if(this.companyProvider.company)
-      this.company = this.companyProvider.company[0];
+      this.company = this.companyProvider.company;
     else
       this.companyProvider.getCompanyInStorage().then(data =>{
-        this.company = data[0];
+        this.company = data;
       }).catch(error => {
         this.singleton.presentToast(this.errorHandler.toString(error));
       });
@@ -37,4 +37,11 @@ export class CompanyPage {
     this.navCtrl.push("EditCompanyPage")
   }
 
+  saveCompanyData(){
+    this.companyProvider.putCompany(this.company).then(data=>{
+      this.company = data;
+    }).catch(error=>{
+      this.singleton.presentToast(this.errorHandler.toString(error));
+    });
+  }
 }

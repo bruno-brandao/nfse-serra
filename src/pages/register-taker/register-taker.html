@@ -1,0 +1,37 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Novo Cliente</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div>
+        <ion-segment [(ngModel)]="tpPessoa">
+            <ion-segment-button value="pf">
+                Pessoa Física
+            </ion-segment-button>
+            <ion-segment-button value="pj">
+                Pessoa Jurídica
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+
+    <div [ngSwitch]="tpPessoa">
+        <ion-list *ngSwitchCase="'pf'">
+            <ion-item>
+                <h2>Ruby</h2>
+            </ion-item>
+            ...
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'pj'">
+            <ion-item>
+                <h2>Luna</h2>
+            </ion-item>
+            ...
+        </ion-list>
+    </div>
+</ion-content>

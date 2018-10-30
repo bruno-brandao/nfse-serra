@@ -1,25 +1,10 @@
 import { UserServiceProvider } from './../../providers/user-service/user-service';
-import { CompanyProvider } from './../../providers/company/company';
+import { CompanyProvider, Company } from './../../providers/company/company';
 import { SingletonProvider } from './../../providers/singleton/singleton';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
-export class Company{
-    UserId;
-    CNPJ;
-    IM;
-    IE;
-    Name;
-    NameFantasy;
-    CEP;
-    Street;
-    Neighborhood;
-    City;
-    State;
-    Telephone;
-    Email;
-}
 
 @IonicPage()
 @Component({

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/timeout';
 import {
   HttpRequest,
   HttpHandler,
@@ -24,7 +25,7 @@ export class TokenInterceptor implements HttpInterceptor {
       }
     });
     
-    return next.handle(request).do((event: HttpEvent<any>) => {
+    return next.handle(request).timeout(15000).do((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {
         // do stuff with response if you want
       }
@@ -34,6 +35,6 @@ export class TokenInterceptor implements HttpInterceptor {
           this.auth.logout();
         }
       }
-    });;
+    });
   }
 }

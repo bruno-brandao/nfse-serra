@@ -92,12 +92,16 @@ export class EndpointsProvider {
   }
 
   //Service
+  public getAllService(){
+    return this.route_api + 'api/Service/Get';
+  }
+
   public getService(ServiceId): string{
     return this.route_api + 'api/Service?ServiceId='+ ServiceId;
   }
 
   public setService(){
-    return this.route_api + 'api/Service';
+    return this.route_api + 'api/Service/Post';
   }
 
   public putService(){

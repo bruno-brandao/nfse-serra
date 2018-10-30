@@ -3,17 +3,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ServicesProvider } from '../../providers/services/services';
 import { SingletonProvider } from '../../providers/singleton/singleton';
 import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
+import { CompanyProvider } from '../../providers/company/company';
 
 @IonicPage()
 @Component({
-  selector: 'page-service',
-  templateUrl: 'service.html',
+  selector: 'page-register-service',
+  templateUrl: 'register-service.html',
 })
-export class ServicePage {
+export class RegisterServicePage {
 
-  services: Array<any>;
+  service: any = {};
 
   constructor(
+    public companyProvider: CompanyProvider,
     public errorHandler: ErrorHandlerProvider,
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -23,23 +25,14 @@ export class ServicePage {
   }
 
   ionViewDidLoad() {
-    this.getServices();
   }
 
-  getServices(){
-    this.servicesProvider.getAllServices().then((data: Array<any>) => {
-      this.services = data;
-    }).catch(error=>{
-      let message = this.errorHandler.toString(error);
-      if(message != "Não foram encontrados registros!")
-        this.singleton.presentToast(message);
-      else
-        this.services = [];
+  saveService(){
+    this.servicesProvider.saveService(this.service).then((data)=>{
+      this.service = data;
+    }).catch((error)=>{
+      this.singleton.presentToast(this.errorHandler.toString(error));
     });
-  }
-
-  addService(){
-    this.navCtrl.push("RegisterServicePage");
   }
 
 }

@@ -4,12 +4,44 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>service</ion-title>
+    <ion-title>Meus Serviços</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+        <ion-spinner name="crescent" *ngIf="!services"></ion-spinner>
+        <div *ngIf="services">
+            <span *ngFor="let service of services">
+                <ion-card>
+        
+                    <ion-card-header>
+                      {{service.Description}}
+                    </ion-card-header>
+                  
+                    <ion-card-content>
+                        <ion-item no-padding>
+                            <ion-icon name='cash' item-start></ion-icon>
+                                Valor
+                            <ion-note item-end>
+                                {{service.Value}}
+                            </ion-note>
+                        </ion-item>
+                        <ion-item no-padding>
+                            <ion-icon name='pricetag' item-start></ion-icon>
+                                Unidade de Medida
+                            <ion-note item-end>
+                                {{service.Unity}}
+                            </ion-note>
+                        </ion-item>
+                    </ion-card-content>
+                  
+                </ion-card>
+            </span>
+        </div>
+          
+        <ion-fab right bottom>
+            <button ion-fab (click)="addService()"><ion-icon name="add"></ion-icon></button>
+        </ion-fab>
 </ion-content>

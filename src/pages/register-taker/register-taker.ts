@@ -3,19 +3,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-taker',
-  templateUrl: 'taker.html',
+  selector: 'page-register-taker',
+  templateUrl: 'register-taker.html',
 })
-export class TakerPage {
+export class RegisterTakerPage {
+
+  tpPessoa: string = "pf";
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-  }
-
-  addTaker(){
-    this.navCtrl.push("RegisterTakerPage");
+    console.log('ionViewDidLoad RegisterTakerPage');
   }
 
 }
