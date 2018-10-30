@@ -15,6 +15,7 @@ export class UserServiceProvider {
     public http: HttpClient,
     public storage: Storage
   ) {
+    this.getUserStorage();
   }
 
   login(email, password){

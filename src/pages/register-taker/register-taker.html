@@ -1,37 +1,164 @@
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>Novo Cliente</ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+        <ion-title>Novo Cliente</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only clear type="submit" form="ngForm">
+                Salvar
+            </button>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
     <div>
-        <ion-segment [(ngModel)]="tpPessoa">
-            <ion-segment-button value="pf">
-                Pessoa Física
-            </ion-segment-button>
-            <ion-segment-button value="pj">
+        <ion-segment [(ngModel)]="tpPessoa" (click)="changeTpPerson()" >
+            <ion-segment-button value="PJ">
                 Pessoa Jurídica
+            </ion-segment-button>
+            <ion-segment-button value="PF">
+                Pessoa Física
             </ion-segment-button>
         </ion-segment>
     </div>
 
     <div [ngSwitch]="tpPessoa">
-        <ion-list *ngSwitchCase="'pf'">
-            <ion-item>
-                <h2>Ruby</h2>
-            </ion-item>
-            ...
+        <ion-list *ngSwitchCase="'PJ'">
+            <form id="ngForm" #registerForm="ngForm" (ngSubmit)="saveData()">
+                <ion-list no-border>
+                    <ion-list-header>
+                        <ion-icon name="pricetag" item-start></ion-icon>
+                        Dados do Cliente
+                    </ion-list-header>
+                    <ion-item>
+                        <ion-label floating>CNPJ</ion-label>
+                        <ion-input type="text" name="CNPJ" [(ngModel)]="taker.CPF_CNPJ" maxLength="18" [brmasker]="{mask:'00.000.000/0000-00', len:18}"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Razão Social</ion-label>
+                        <ion-input type="text" name="Social" [(ngModel)]="taker.Name"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Nome Fantasia</ion-label>
+                        <ion-input type="text" name="Fantasia" [(ngModel)]="taker.NameFantasy"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Inscrição Estadual</ion-label>
+                        <ion-input type="text" name="Estadual" [(ngModel)]="taker.RG_IE"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Inscrição Municipal</ion-label>
+                        <ion-input type="text" name="Municipal" [(ngModel)]="taker.IM"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <ion-list no-border>
+                    <ion-list-header>
+                        <ion-icon name="contact" item-start></ion-icon>
+                        Contato
+                    </ion-list-header>
+                    <ion-item>
+                        <ion-label floating>Telefone</ion-label>
+                        <ion-input type="text" name="Telefone" [(ngModel)]="taker.Telephone"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Email</ion-label>
+                        <ion-input type="text" name="Email" [(ngModel)]="taker.Email"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <ion-list>
+                    <ion-list-header>
+                        <ion-icon name="pin" item-start></ion-icon>
+                        Endereço
+                    </ion-list-header>
+                    <ion-item>
+                        <ion-label floating>CEP</ion-label>
+                        <ion-input type="text" name="CEP" [(ngModel)]="taker.CEP"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Rua</ion-label>
+                        <ion-input type="text" name="Rua" [(ngModel)]="taker.Street"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Bairro</ion-label>
+                        <ion-input type="text" name="Bairro" [(ngModel)]="taker.Neighborhood"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Cidade</ion-label>
+                        <ion-input type="text" name="Cidade" [(ngModel)]="taker.City"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Estado</ion-label>
+                        <ion-input type="text" name="Estado" [(ngModel)]="taker.State"></ion-input>
+                    </ion-item>
+                </ion-list>
+            </form>
         </ion-list>
 
-        <ion-list *ngSwitchCase="'pj'">
-            <ion-item>
-                <h2>Luna</h2>
-            </ion-item>
-            ...
+        <ion-list *ngSwitchCase="'PF'">
+            <form id="ngForm" #registerForm="ngForm" (ngSubmit)="saveData()">
+                <ion-list no-border>
+                    <ion-list-header>
+                        <ion-icon name="pricetag" item-start></ion-icon>
+                        Dados do Cliente
+                    </ion-list-header>
+                    <ion-item>
+                        <ion-label floating>Nome</ion-label>
+                        <ion-input type="text" name="Nome" [(ngModel)]="taker.Name"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>CPF</ion-label>
+                        <ion-input type="text" name="CPF" [(ngModel)]="taker.CPF_CNPJ" maxLength="14" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>RG</ion-label>
+                        <ion-input type="text" name="RG" [(ngModel)]="taker.RG_IE"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <ion-list no-border>
+                    <ion-list-header>
+                        <ion-icon name="contact" item-start></ion-icon>
+                        Contato
+                    </ion-list-header>
+                    <ion-item>
+                        <ion-label floating>Telefone</ion-label>
+                        <ion-input type="text" name="Telefone" [(ngModel)]="taker.Telephone"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Email</ion-label>
+                        <ion-input type="text" name="Email" [(ngModel)]="taker.Email"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <ion-list>
+                    <ion-list-header>
+                        <ion-icon name="pin" item-start></ion-icon>
+                        Endereço
+                    </ion-list-header>
+                    <ion-item>
+                        <ion-label floating>CEP</ion-label>
+                        <ion-input type="text" name="CEP" [(ngModel)]="taker.CEP"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Rua</ion-label>
+                        <ion-input type="text" name="Rua" [(ngModel)]="taker.Street"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Bairro</ion-label>
+                        <ion-input type="text" name="Bairro" [(ngModel)]="taker.Neighborhood"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Cidade</ion-label>
+                        <ion-input type="text" name="Cidade" [(ngModel)]="taker.City"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Estado</ion-label>
+                        <ion-input type="text" name="Estado" [(ngModel)]="taker.State"></ion-input>
+                    </ion-item>
+                </ion-list>
+            </form>
         </ion-list>
+
     </div>
 </ion-content>

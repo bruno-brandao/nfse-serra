@@ -14,6 +14,10 @@ export class EndpointsProvider {
     return this.route_api + 'api/Taker/Get?TakerId='+ TakerId;
   }
 
+  public getAllTaker(): string{
+    return this.route_api + 'api/Taker/Get';
+  }
+
   public setTaker(){
     return this.route_api + 'api/Taker/Post';
   }

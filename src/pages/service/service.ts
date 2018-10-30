@@ -22,7 +22,7 @@ export class ServicePage {
   ) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter(){
     this.getServices();
   }
 

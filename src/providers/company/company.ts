@@ -90,9 +90,9 @@ export class CompanyProvider {
   putCompany(data){
     return new Promise((resolve, reject)=>{
       this.http.put(this.endpoints.putCompany(), data).subscribe((data: any) => {
-        this.company = data[0];
-        this.storage.set("company", data[0]);
-        resolve(data[0]);
+        this.company = data;
+        this.storage.set("company", data);
+        resolve(data);
       }, err => {
         reject(err);
       });

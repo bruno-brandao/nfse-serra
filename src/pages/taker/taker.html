@@ -10,8 +10,36 @@
 </ion-header>
 
 <ion-content>
-          
-        <ion-fab right bottom>
-            <button ion-fab (click)="addTaker()"><ion-icon name="add"></ion-icon></button>
-        </ion-fab>
+    <ion-spinner name="crescent" *ngIf="!takers"></ion-spinner>
+    <div *ngIf="takers">
+        <span *ngFor="let taker of takers">
+            <ion-card>
+    
+                <ion-card-header>
+                  {{taker.Name}}
+                </ion-card-header>
+              
+                <ion-card-content>
+                    <ion-item no-padding>
+                        <ion-icon name='contact' item-start></ion-icon>
+                            Cliente
+                        <ion-note item-end>
+                            {{taker.Value}}
+                        </ion-note>
+                    </ion-item>
+                    <ion-item no-padding>
+                        <ion-icon name='pricetag' item-start></ion-icon>
+                            CPF/CNPJ
+                        <ion-note item-end>
+                            {{taker.CPF_CNPJ}}
+                        </ion-note>
+                    </ion-item>
+                </ion-card-content>
+              
+            </ion-card>
+        </span>
+    </div>
+    <ion-fab right bottom *ngIf="takers">
+        <button ion-fab (click)="addTaker()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
 </ion-content>

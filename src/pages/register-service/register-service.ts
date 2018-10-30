@@ -30,6 +30,7 @@ export class RegisterServicePage {
   saveService(){
     this.servicesProvider.saveService(this.service).then((data)=>{
       this.service = data;
+      this.navCtrl.pop();
     }).catch((error)=>{
       this.singleton.presentToast(this.errorHandler.toString(error));
     });

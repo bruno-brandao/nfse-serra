@@ -27,11 +27,11 @@ export class RegisterPage {
     public userProvider: UserServiceProvider
   ) {
     this.group_fields = {
-        Name: ['', [Validators.required, ValidationService.fullName]],
-        CPF: ['', [Validators.required, , ValidationService.validarCPF]],
-        Email: ['', [Validators.required, Validators.email]],
-        Password: ['', [Validators.required, ValidationService.password]],
-        confirmPassword: ['', [Validators.required, ValidationService.password]],
+      Name: ['', [Validators.required, ValidationService.fullName]],
+      CPF: ['', [Validators.required, , ValidationService.validarCPF]],
+      Email: ['', [Validators.required, Validators.email]],
+      Password: ['', [Validators.required, ValidationService.password]],
+      confirmPassword: ['', [Validators.required, ValidationService.password]],
     }
     
     this.todo = this.formBuilder.group(this.group_fields, {validator: ValidationService.passwordsMatch});
