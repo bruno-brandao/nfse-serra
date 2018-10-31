@@ -39,4 +39,8 @@ export class HomePage {
     });
   }
 
+  newNfse(){
+    this.navCtrl.push("NewNfsePage");
+  }
+
 }

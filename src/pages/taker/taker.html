@@ -15,21 +15,14 @@
         <span *ngFor="let taker of takers">
             <ion-card>
     
-                <ion-card-header>
+                <ion-card-header text-wrap>
                   {{taker.Name}}
                 </ion-card-header>
               
                 <ion-card-content>
                     <ion-item no-padding>
-                        <ion-icon name='contact' item-start></ion-icon>
-                            Cliente
-                        <ion-note item-end>
-                            {{taker.Value}}
-                        </ion-note>
-                    </ion-item>
-                    <ion-item no-padding>
-                        <ion-icon name='pricetag' item-start></ion-icon>
-                            CPF/CNPJ
+                        <ion-icon name='pricetag' color="cinza" item-start></ion-icon>
+                            <p>CPF/CNPJ</p>
                         <ion-note item-end>
                             {{taker.CPF_CNPJ}}
                         </ion-note>
@@ -38,6 +31,11 @@
               
             </ion-card>
         </span>
+    </div>
+    <div class="empty" *ngIf="takers && takers.length == 0" >
+        <div class="empty-content">
+            <h2 ion-text>Você não possui nenhum cliente</h2>
+        </div>
     </div>
     <ion-fab right bottom *ngIf="takers">
         <button ion-fab (click)="addTaker()"><ion-icon name="add"></ion-icon></button>

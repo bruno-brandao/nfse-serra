@@ -3,5 +3,11 @@
   "integrations": {
     "cordova": {}
   },
+  "proxies": [
+    {
+      "path": "/v1",
+      "proxyUrl": "https://www.receitaws.com.br/v1"
+    }
+  ],
   "type": "ionic-angular"
 }

@@ -33,15 +33,14 @@ export class CompanyPage {
       });
   }
 
-  editCompany(){
-    this.navCtrl.push("EditCompanyPage")
-  }
-
   saveCompanyData(){
+    this.singleton.showLoading();
     this.companyProvider.putCompany(this.company).then(data=>{
       this.company = data;
+      this.singleton.dismissLoading();
     }).catch(error=>{
       this.singleton.presentToast(this.errorHandler.toString(error));
+      this.singleton.dismissLoading();
     });
   }
 }

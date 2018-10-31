@@ -43,6 +43,7 @@ export class RegisterCompanyPage {
           this.singleton.dismissLoading();
           this.singleton.presentToast(data.message);
         }else{
+          console.log(data);
           this.company = new Company();
           this.company.UserId = this.userProvider.user.UserId;
           this.company.CNPJ = cnpjNumber;

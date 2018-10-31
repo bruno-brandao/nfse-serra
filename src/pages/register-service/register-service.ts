@@ -12,7 +12,7 @@ import { CompanyProvider } from '../../providers/company/company';
 })
 export class RegisterServicePage {
 
-  service: any = {};
+  service: any;
 
   constructor(
     public companyProvider: CompanyProvider,
@@ -22,18 +22,33 @@ export class RegisterServicePage {
     public servicesProvider: ServicesProvider,
     public singleton: SingletonProvider
   ) {
+    this.service = this.navParams.get("service") || {};
   }
 
   ionViewDidLoad() {
   }
 
   saveService(){
-    this.servicesProvider.saveService(this.service).then((data)=>{
-      this.service = data;
-      this.navCtrl.pop();
-    }).catch((error)=>{
-      this.singleton.presentToast(this.errorHandler.toString(error));
-    });
+    this.service.Value = this.service.Value.replace(",", ".");
+    this.singleton.showLoading();
+    if(!this.service.ServicesId){
+      this.servicesProvider.saveService(this.service).then((data)=>{
+        this.singleton.dismissLoading();
+        this.service = data;
+        this.navCtrl.pop();
+      }).catch((error)=>{
+        this.singleton.dismissLoading();
+        this.singleton.presentToast(this.errorHandler.toString(error));
+      });
+    }else{
+      this.servicesProvider.putService(this.service).then((data)=>{
+        this.singleton.dismissLoading();
+        this.navCtrl.pop();
+      }).catch((error)=>{
+        this.singleton.dismissLoading();
+        this.singleton.presentToast(this.errorHandler.toString(error));
+      });
+    }
   }
 
 }

@@ -92,7 +92,7 @@ export class EndpointsProvider {
 
   //TaxpayerActivities
   public getTaxpayerActivities(CompanyId): string{
-    return this.route_api + 'api/TaxpayerActivities?CompanyId=' + CompanyId;
+    return this.route_api + 'api/TaxpayerActivities/Get?CompanyId=' + CompanyId;
   }
 
   //Service
@@ -109,15 +109,15 @@ export class EndpointsProvider {
   }
 
   public putService(){
-    return this.route_api + 'api/Service';
+    return this.route_api + 'api/Service/Put';
   }
 
   public deleteService(ServiceId){
-    return this.route_api + 'api/Service?ServiceId='+ ServiceId;
+    return this.route_api + 'api/Service/Delete?ServicesId='+ ServiceId;
   }
 
   //CFPS
-  public getCFPS(CFPSId): string{
-    return this.route_api + 'api/CFPS/Get?CFPSId=' + CFPSId;
+  public getCFPS(): string{
+    return this.route_api + 'api/CFPS/Get';
   }
 }

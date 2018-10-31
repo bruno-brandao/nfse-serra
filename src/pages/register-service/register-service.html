@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Cadastrar Serviço</ion-title>
+    <ion-title>{{ service?.ServicesId ? 'Editar Serviço' : 'Cadastrar Serviço'}}</ion-title>
 
     <ion-buttons end>
         <button ion-button icon-only clear type="button" (click)="saveService()">
@@ -27,7 +27,7 @@
             </ion-item>
             <ion-item>
                 <ion-label floating>Preço</ion-label>
-                <ion-input type="text" [(ngModel)]="service.Value" [brmasker]="{money: true}"></ion-input>
+                <ion-input type="text" [(ngModel)]="service.Value" [brmasker]="{money: true,  decimalCaracter: ',', decimal: '2'}"></ion-input>
             </ion-item>
         </ion-list>
         <ion-list no-border radio-group [(ngModel)]="service.Unity">

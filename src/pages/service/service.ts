@@ -38,6 +38,23 @@ export class ServicePage {
     });
   }
 
+  formatReal(value){
+    return parseFloat(value).toFixed(2).toString().replace(".",",")
+  }
+
+  editService(service){
+    this.navCtrl.push("RegisterServicePage", {service: service})
+  }
+
+  removeService(id){
+    this.servicesProvider.removeService(id).then((data: string)=>{
+      this.singleton.presentToast(data);
+      this.getServices();
+    }).catch(error=>{
+      this.singleton.presentToast(this.errorHandler.toString(error));
+    });
+  }
+
   addService(){
     this.navCtrl.push("RegisterServicePage");
   }

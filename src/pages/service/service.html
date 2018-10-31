@@ -17,28 +17,50 @@
                 <ion-card>
         
                     <ion-card-header>
-                      {{service.Description}}
+                      <ion-item no-padding>
+                          {{service.Description}}
+                      </ion-item>
                     </ion-card-header>
                   
                     <ion-card-content>
                         <ion-item no-padding>
-                            <ion-icon name='cash' item-start></ion-icon>
-                                Valor
+                            <ion-icon name='logo-usd' color="cinza" item-start></ion-icon>
+                                <p>Valor</p>
                             <ion-note item-end>
-                                {{service.Value}}
+                                R$ {{formatReal(service.Value)}}
                             </ion-note>
                         </ion-item>
                         <ion-item no-padding>
-                            <ion-icon name='pricetag' item-start></ion-icon>
-                                Unidade de Medida
+                            <ion-icon name='pricetag' color="cinza" item-start></ion-icon>
+                                <p>Unidade de Medida</p>
                             <ion-note item-end>
                                 {{service.Unity}}
                             </ion-note>
                         </ion-item>
                     </ion-card-content>
+
+                    <ion-row no-padding>
+                      <ion-col text-center>
+                        <button ion-button clear small color="primary" (click)="editService(service)"  icon-start>
+                          <ion-icon name='create'></ion-icon>
+                          Editar
+                        </button>
+                      </ion-col>
+                      <ion-col text-center>
+                        <button ion-button clear small color="primary" (click)="removeService(service.ServicesId)" icon-start>
+                          <ion-icon name='trash'></ion-icon>
+                          Excluir
+                        </button>
+                      </ion-col>
+                    </ion-row>
                   
                 </ion-card>
             </span>
+        </div>
+        <div class="empty" *ngIf="services && services.length == 0" >
+            <div class="empty-content">
+                <h2 ion-text>Você não possui nenhum serviço</h2>
+            </div>
         </div>
           
         <ion-fab right bottom>

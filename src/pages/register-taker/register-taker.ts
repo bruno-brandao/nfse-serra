@@ -11,7 +11,7 @@ import { ErrorHandlerProvider } from '../../providers/error-handler/error-handle
 })
 export class RegisterTakerPage {
 
-  tpPessoa: string = "PJ";
+  tpPessoa: string = "J";
   taker: Taker = new Taker();
 
   constructor(
@@ -31,17 +31,20 @@ export class RegisterTakerPage {
     if(!this.validateInputs()){
       return;
     }
+    this.singleton.showLoading();
     this.taker.CPF_CNPJ = this.taker.CPF_CNPJ.replace(/\D/g, '');
     this.takerProvider.addTaker(this.taker).then((data: Taker) => {
-      this.taker = data;
+      this.navCtrl.pop();
+      this.singleton.dismissLoading();
     }).catch(error=>{
+      this.singleton.dismissLoading();
       this.singleton.presentToast(this.errorHandler.toString(error));
     });
   }
 
   validateInputs(){
     if(!this.taker.CPF_CNPJ){
-      if(this.tpPessoa == "pf")
+      if(this.tpPessoa == "F")
         this.singleton.presentToast("Informe o CPF do cliente");
       else
         this.singleton.presentToast("Informe o CNPJ do cliente");
@@ -50,11 +53,11 @@ export class RegisterTakerPage {
       this.singleton.presentToast("Informe o nome do cliente");
       return false;
     }else if(!this.taker.RG_IE){
-      if(this.tpPessoa == "pf")
+      if(this.tpPessoa == "F")
         this.singleton.presentToast("Informe o RG do cliente");
       else
         this.singleton.presentToast("Informe a Inscrição Estadual do cliente");
-        false;
+      return false;
     }else if(!this.taker.Telephone){
       this.singleton.presentToast("Informe o telefone do cliente");
       return false;
@@ -78,10 +81,10 @@ export class RegisterTakerPage {
   }
 
   changeTpPerson(){
-    this.taker.CPF_CNPJ = null;
-    this.taker.Name = null;
-    this.taker.NameFantasy = null;
-    this.taker.IM = null;
+    this.taker.CPF_CNPJ = "";
+    this.taker.Name = "";
+    this.taker.NameFantasy = "";
+    this.taker.IM = "";
     this.taker.TypePerson = this.tpPessoa;
   }
 

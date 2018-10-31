@@ -15,18 +15,18 @@
 
 <ion-content>
     <div>
-        <ion-segment [(ngModel)]="tpPessoa" (click)="changeTpPerson()" >
-            <ion-segment-button value="PJ">
+        <ion-segment [(ngModel)]="tpPessoa" (click)="changeTpPerson()">
+            <ion-segment-button value="J">
                 Pessoa Jurídica
             </ion-segment-button>
-            <ion-segment-button value="PF">
+            <ion-segment-button value="F">
                 Pessoa Física
             </ion-segment-button>
         </ion-segment>
     </div>
 
     <div [ngSwitch]="tpPessoa">
-        <ion-list *ngSwitchCase="'PJ'">
+        <ion-list *ngSwitchCase="'J'">
             <form id="ngForm" #registerForm="ngForm" (ngSubmit)="saveData()">
                 <ion-list no-border>
                     <ion-list-header>
@@ -90,14 +90,42 @@
                         <ion-input type="text" name="Cidade" [(ngModel)]="taker.City"></ion-input>
                     </ion-item>
                     <ion-item>
-                        <ion-label floating>Estado</ion-label>
-                        <ion-input type="text" name="Estado" [(ngModel)]="taker.State"></ion-input>
+                            <ion-label>Estado</ion-label>
+                            <ion-select [(ngModel)]="taker.State" name="Estado" interface="popover">
+                                <ion-option value="AC">Acre</ion-option>
+                                <ion-option value="AL">Alagoas</ion-option>
+                                <ion-option value="AP">Amapá</ion-option>
+                                <ion-option value="AM">Amazonas</ion-option>
+                                <ion-option value="BA">Bahia</ion-option>
+                                <ion-option value="CE">Ceará</ion-option>
+                                <ion-option value="DF">Distrito Federal</ion-option>
+                                <ion-option value="ES">Espírito Santo</ion-option>
+                                <ion-option value="GO">Goiás</ion-option>
+                                <ion-option value="MA">Maranhão</ion-option>
+                                <ion-option value="MT">Mato Grosso</ion-option>
+                                <ion-option value="MS">Mato Grosso do Sul</ion-option>
+                                <ion-option value="MG">Minas Gerais</ion-option>
+                                <ion-option value="PA">Pará</ion-option>
+                                <ion-option value="PB">Paraíba</ion-option>
+                                <ion-option value="PR">Paraná</ion-option>
+                                <ion-option value="PE">Pernambuco</ion-option>
+                                <ion-option value="PI">Piauí</ion-option>
+                                <ion-option value="RJ">Rio de Janeiro</ion-option>
+                                <ion-option value="RN">Rio Grande do Norte</ion-option>
+                                <ion-option value="RS">Rio Grande do Sul</ion-option>
+                                <ion-option value="RO">Rondônia</ion-option>
+                                <ion-option value="RR">Roraima</ion-option>
+                                <ion-option value="SC">Santa Catarina</ion-option>
+                                <ion-option value="SP">São Paulo</ion-option>
+                                <ion-option value="SE">Sergipe</ion-option>
+                                <ion-option value="TO">Tocantins</ion-option>
+                            </ion-select>
                     </ion-item>
                 </ion-list>
             </form>
         </ion-list>
 
-        <ion-list *ngSwitchCase="'PF'">
+        <ion-list *ngSwitchCase="'F'">
             <form id="ngForm" #registerForm="ngForm" (ngSubmit)="saveData()">
                 <ion-list no-border>
                     <ion-list-header>
@@ -153,12 +181,39 @@
                         <ion-input type="text" name="Cidade" [(ngModel)]="taker.City"></ion-input>
                     </ion-item>
                     <ion-item>
-                        <ion-label floating>Estado</ion-label>
-                        <ion-input type="text" name="Estado" [(ngModel)]="taker.State"></ion-input>
+                        <ion-label>Estado</ion-label>
+                        <ion-select [(ngModel)]="taker.State" name="Estado" interface="popover">
+                            <ion-option value="AC">Acre</ion-option>
+                            <ion-option value="AL">Alagoas</ion-option>
+                            <ion-option value="AP">Amapá</ion-option>
+                            <ion-option value="AM">Amazonas</ion-option>
+                            <ion-option value="BA">Bahia</ion-option>
+                            <ion-option value="CE">Ceará</ion-option>
+                            <ion-option value="DF">Distrito Federal</ion-option>
+                            <ion-option value="ES">Espírito Santo</ion-option>
+                            <ion-option value="GO">Goiás</ion-option>
+                            <ion-option value="MA">Maranhão</ion-option>
+                            <ion-option value="MT">Mato Grosso</ion-option>
+                            <ion-option value="MS">Mato Grosso do Sul</ion-option>
+                            <ion-option value="MG">Minas Gerais</ion-option>
+                            <ion-option value="PA">Pará</ion-option>
+                            <ion-option value="PB">Paraíba</ion-option>
+                            <ion-option value="PR">Paraná</ion-option>
+                            <ion-option value="PE">Pernambuco</ion-option>
+                            <ion-option value="PI">Piauí</ion-option>
+                            <ion-option value="RJ">Rio de Janeiro</ion-option>
+                            <ion-option value="RN">Rio Grande do Norte</ion-option>
+                            <ion-option value="RS">Rio Grande do Sul</ion-option>
+                            <ion-option value="RO">Rondônia</ion-option>
+                            <ion-option value="RR">Roraima</ion-option>
+                            <ion-option value="SC">Santa Catarina</ion-option>
+                            <ion-option value="SP">São Paulo</ion-option>
+                            <ion-option value="SE">Sergipe</ion-option>
+                            <ion-option value="TO">Tocantins</ion-option>
+                        </ion-select>
                     </ion-item>
                 </ion-list>
             </form>
         </ion-list>
-
     </div>
 </ion-content>

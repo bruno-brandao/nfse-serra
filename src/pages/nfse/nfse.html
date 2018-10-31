@@ -1,15 +1,23 @@
 <ion-header>
 
-    <ion-navbar #content color="primary">
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-      </button>
-    <ion-title>nfse</ion-title>
+  <ion-navbar #content color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Minhas Notas</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <div class="empty" > <!--*ngIf="services && services.length == 0"-->
+      <div class="empty-content">
+          <h2 ion-text>Você não possui nenhuma nota fiscal</h2>
+      </div>
+  </div>
+  <ion-fab right bottom>
+    <button ion-fab (click)="newNfse()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

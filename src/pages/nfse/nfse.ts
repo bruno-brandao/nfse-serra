@@ -8,11 +8,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NfsePage {
 
+  data: Array<any>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NfsePage');
   }
 
+  newNfse(){
+    this.navCtrl.push("NewNfsePage");
+  }
 }

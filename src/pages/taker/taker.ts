@@ -22,7 +22,7 @@ export class TakerPage {
   ) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter(){
     this.getTakers();
   }
 

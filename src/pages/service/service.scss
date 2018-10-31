@@ -12,4 +12,22 @@ page-service {
         bottom: 0;
         right: 0;
     }
+
+    .empty{
+        display: flex;
+        padding: 16px;
+        height: 100%;
+
+        .empty-content{
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            color: color($colors, cinza);
+            h2{
+                text-align: center;
+                height: fit-content;
+            }
+        }
+    }
 }

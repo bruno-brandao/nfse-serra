@@ -32,7 +32,7 @@ export class MyApp {
       { title: 'Empresa', component: 'CompanyPage', icon: 'ios-briefcase-outline' },
       { title: 'Serviços', component: 'ServicePage', icon: 'ios-clipboard-outline' },
       { title: 'Clientes', component: 'TakerPage', icon: 'ios-people-outline' },
-      { title: 'Transportador', component: 'ShippingCompanyPage', icon: 'ios-car-outline' },
+      //{ title: 'Transportador', component: 'ShippingCompanyPage', icon: 'ios-car-outline' },
       { title: 'Notas', component: 'NfsePage', icon: 'ios-document-outline' }
     ];
 

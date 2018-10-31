@@ -5,6 +5,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { ComponentsModule } from '../components/components.module'
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserServiceProvider } from '../providers/user-service/user-service';
@@ -36,7 +38,7 @@ import { TokenInterceptor } from '../providers/token-interceptor/token.intercept
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    MyApp
   ],
   providers: [
     StatusBar,
@@ -55,6 +57,7 @@ import { TokenInterceptor } from '../providers/token-interceptor/token.intercept
     Device,
     HTTP,
     ValidationProvider,
+    ComponentsModule,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

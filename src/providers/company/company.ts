@@ -3,6 +3,7 @@ import { EndpointsProvider } from '../endpoints/endpoints';
 import { HttpClient } from '@angular/common/http';
 import { UserServiceProvider } from '../user-service/user-service';
 import { Storage } from '@ionic/storage';
+import { HTTP } from '@ionic-native/http';
 export class Company{
     UserId;
     CNPJ;
@@ -25,6 +26,7 @@ export class CompanyProvider {
   constructor(
     public endpoints: EndpointsProvider,
     public http: HttpClient,
+    public httpNative: HTTP,
     public storage: Storage,
     private userProvider: UserServiceProvider
   ) {
@@ -67,8 +69,8 @@ export class CompanyProvider {
 
   getCompanyDataInReceita(cnpj){
     return new Promise((resolve, reject)=>{
-      this.http.get('https://www.receitaws.com.br/v1/cnpj/' + cnpj).subscribe(data=>{
-        resolve(data);
+      this.httpNative.get('https://www.receitaws.com.br/v1/cnpj/' + cnpj, {}, {}).then(data=>{
+        resolve(JSON.parse(data.data));
       }, error=>{
         reject(error);
       });
