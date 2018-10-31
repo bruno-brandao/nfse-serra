@@ -1,0 +1,59 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title *ngIf="param == 'taker'">Cliente</ion-title>
+    <ion-title *ngIf="param == 'services'">Serviços</ion-title>
+    <ion-title *ngIf="param == 'activities'">Atividades</ion-title>
+    <ion-title *ngIf="param == 'code'">Código Fiscal</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-spinner name="crescent" *ngIf="!data"></ion-spinner>
+  <div *ngIf="data">
+    <div *ngIf="param == 'taker'">
+        <ion-list>
+          <button *ngFor="let taker of data" ion-item (click)="selectData('taker')">
+            <ion-icon name="contact" color="cinza" item-start></ion-icon>
+            <p>{{taker.Name}}</p>
+            <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
+          </button>
+        </ion-list>
+    </div>
+    <div *ngIf="param == 'services'">
+        <ion-list>
+          <button ion-item *ngFor="let service of data" (click)="selectData('taker')">
+            <p>{{service.Description}}</p>
+            <ion-note item-end>
+                R$ {{formatReal(service.Value)}}
+            </ion-note>
+          </button>
+      
+        </ion-list>
+    </div>
+    <div *ngIf="param == 'code'">
+        <ion-list>
+          <button ion-item *ngFor="let code of data" (click)="selectData('taker')">
+            <ion-note item-start>
+                {{code.CFPSCod}}
+            </ion-note>
+            <p text-wrap>{{code.Description}}</p>
+          </button>
+      
+        </ion-list>
+    </div>
+    <div *ngIf="param == 'activities'">
+        <ion-list>
+          <button ion-item *ngFor="let actv of data" (click)="selectData('taker')">
+            <ion-note item-start>
+                {{actv.CFPSCod}}
+            </ion-note>
+            <p text-wra>{{actv.Description}}</p>
+          </button>
+      
+        </ion-list>
+    </div>
+  </div>
+</ion-content>

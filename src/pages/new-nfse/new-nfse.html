@@ -1,0 +1,41 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Emitir NFS-e</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list>
+    <ion-list-header>
+      Dados da nota
+    </ion-list-header>
+    <button ion-item (click)="selectData('taker')">
+      <ion-icon name="contact" color="cinza" item-start></ion-icon>
+      <p>Cliente</p>
+      <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
+    </button>
+
+    <button ion-item (click)="selectData('services')">
+      <ion-icon name="list" color="cinza" item-start></ion-icon>
+      <p>Serviços</p>
+      <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
+    </button>
+
+    <button ion-item (click)="selectData('code')">
+      <ion-icon name="bookmark" color="cinza" item-start></ion-icon>
+      <p>Código Fiscal</p>
+      <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
+    </button>
+
+    <button ion-item (click)="selectData('activities')">
+      <ion-icon name="ios-create" color="cinza" item-start></ion-icon>
+      <p>Atividades</p>
+      <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
+    </button>
+
+  </ion-list>
+</ion-content>
