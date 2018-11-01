@@ -64,6 +64,16 @@ export class NfseProvider {
     });
   }
 
+  getAllNfse(){
+    return new Promise((resolve, reject) => {
+      this.http.get(this.endpoints.getAllNfse()).subscribe(data => {
+        resolve(data);
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+
   newNfse(data) {
     return new Promise((resolve, reject)=>{
       this.http.post(this.endpoints.setNFeS(), data).subscribe((data: any) => {

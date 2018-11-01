@@ -93,14 +93,16 @@ export class NewNfsePage {
       return;
     }
     this.singleton.showLoading();
-
-    let date = new Date(this.date);
+    var parts = this.date.split('-');
+    let date = new Date(parts[0], parts[1] - 1, parts[2]);
     let value = this.nfseData.Total / this.qtd;
+    this.nfseData.Invoices = [];
     for (let index = 0; index < this.qtd; index++) {
-      let int = !this.interval ? 0 : this.interval * (index + 1); 
+      let int = !this.interval ? 0 : this.interval; 
+      date.setDate((date.getDate() + int));
       this.nfseData.Invoices.push({
         Number: index + 1,
-        Maturity: date.getFullYear() + "-" + date.getMonth() + "-" + (date.getDate()+int),
+        Maturity: date.toISOString().slice(0,10),
         Value: value
       });
     }

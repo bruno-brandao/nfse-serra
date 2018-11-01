@@ -10,12 +10,14 @@
 </ion-header>
 
 <ion-content>
-  <div class="empty" > <!--*ngIf="services && services.length == 0"-->
+  <ion-spinner name="crescent" *ngIf="!data"></ion-spinner>
+  <div class="empty" *ngIf="data && data.length == 0">
       <div class="empty-content">
           <h2 ion-text>Você não possui nenhuma nota fiscal</h2>
       </div>
   </div>
-  <ion-fab right bottom>
+
+  <ion-fab right bottom *ngIf="data">
     <button ion-fab (click)="newNfse()">
       <ion-icon name="add"></ion-icon>
     </button>

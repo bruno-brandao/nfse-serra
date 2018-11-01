@@ -90,6 +90,10 @@ export class EndpointsProvider {
     return this.route_api + 'api/NFeS/Issue';
   }
 
+  public getAllNfse(){
+    return this.route_api + 'api/NFeS/Get';
+  }
+
   //TaxpayerActivities
   public getTaxpayerActivities(CompanyId): string{
     return this.route_api + 'api/TaxpayerActivities/Get?CompanyId=' + CompanyId;

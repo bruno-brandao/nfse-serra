@@ -25,7 +25,7 @@ export class LoginPage {
     public userProvider: UserServiceProvider
   ) {
     this.todo = this.formBuilder.group({
-      email: ['bruno.ed00@gmail.com', Validators.required],
+      email: ['bruno.ed00@gmail.com', [Validators.required, Validators.email]],
       password: ['bruno123', Validators.required],
     });
   }
