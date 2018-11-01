@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, App } from 'ionic-angular';
 import { NfseProvider, NFSE } from '../../providers/nfse/nfse';
 import { CompanyProvider } from '../../providers/company/company';
 import { SingletonProvider } from '../../providers/singleton/singleton';
@@ -20,6 +20,7 @@ export class NewNfsePage {
   total: number = 0;
 
   constructor(
+    private app: App,
     public companyProvider: CompanyProvider,
     public errorHandler: ErrorHandlerProvider,
     public modalCtrl: ModalController,
@@ -106,8 +107,10 @@ export class NewNfsePage {
         Value: value
       });
     }
-    this.nfseProvider.newNfse(this.nfseData).then(()=>{
+    this.nfseProvider.newNfse(this.nfseData).then((data: any)=>{
       this.singleton.dismissLoading();
+      this.app.getRootNav().setRoot("NfsePage", {}, { animate: true, direction: "back" });
+      this.app.getRootNav().insert(1, "NfseViewerPage", { pdf: data.PDF });
     }).catch(error=>{
       this.singleton.dismissLoading();
       this.singleton.presentToast(this.errorHandler.toString(error));

@@ -72,4 +72,15 @@ export class TakerProvider {
     });
   }
 
+  putTaker(data){
+    return new Promise((resolve, reject)=>{
+      data.CompanyId = this.companyProvider.company.CompanyId;
+      this.http.put(this.endpoints.putTaker(), data).subscribe(data => {
+        resolve(data);
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+
 }

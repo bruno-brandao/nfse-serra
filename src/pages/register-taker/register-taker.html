@@ -1,7 +1,8 @@
 <ion-header>
 
     <ion-navbar color="primary">
-        <ion-title>Novo Cliente</ion-title>
+        <ion-title *ngIf="!taker.TakerId">Novo Cliente</ion-title>
+        <ion-title *ngIf="taker.TakerId">Editar Cliente</ion-title>
 
         <ion-buttons end>
             <button ion-button icon-only clear type="submit" form="ngForm">
@@ -75,7 +76,7 @@
                     </ion-list-header>
                     <ion-item>
                         <ion-label floating>CEP</ion-label>
-                        <ion-input type="text" name="CEP" [(ngModel)]="taker.CEP"></ion-input>
+                        <ion-input type="text" name="CEP" [(ngModel)]="taker.CEP" (onkeyup)="getAddress()" (keyup.enter)="getAddress()" [brmasker]="{mask:'00.000-000', len:10}"></ion-input>
                     </ion-item>
                     <ion-item>
                         <ion-label floating>Rua</ion-label>
@@ -166,7 +167,7 @@
                     </ion-list-header>
                     <ion-item>
                         <ion-label floating>CEP</ion-label>
-                        <ion-input type="text" name="CEP" [(ngModel)]="taker.CEP"></ion-input>
+                        <ion-input type="text" name="CEP" [(ngModel)]="taker.CEP" (onkeyup)="getAddress()" (keyup.enter)="getAddress()" [brmasker]="{mask:'00.000-000', len:10}"></ion-input>
                     </ion-item>
                     <ion-item>
                         <ion-label floating>Rua</ion-label>

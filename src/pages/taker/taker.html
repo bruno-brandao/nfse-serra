@@ -13,7 +13,7 @@
     <ion-spinner name="crescent" *ngIf="!takers"></ion-spinner>
     <div *ngIf="takers">
         <span *ngFor="let taker of takers">
-            <ion-card>
+            <ion-card (click)="addTaker(taker)">
     
                 <ion-card-header text-wrap>
                   {{taker.Name}}

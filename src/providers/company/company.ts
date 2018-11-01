@@ -101,4 +101,15 @@ export class CompanyProvider {
     });
   }
 
+  getAddressViaCep(cep){
+    return new Promise((resolve, reject)=>{
+      this.httpNative.get("https://viacep.com.br/ws/" + cep + "/json/", {}, {})
+      .then(data =>{
+        resolve(data);
+      }, error =>{
+        reject(error);
+      });
+    });
+  }
+
 }

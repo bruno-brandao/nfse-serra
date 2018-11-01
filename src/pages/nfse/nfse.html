@@ -12,10 +12,38 @@
 <ion-content>
   <ion-spinner name="crescent" *ngIf="!data"></ion-spinner>
   <div class="empty" *ngIf="data && data.length == 0">
-      <div class="empty-content">
-          <h2 ion-text>Você não possui nenhuma nota fiscal</h2>
-      </div>
+    <div class="empty-content">
+      <h2 ion-text>Você não possui nenhuma nota fiscal</h2>
+    </div>
   </div>
+  <ion-card *ngFor="let nfse of data">
+    <ion-card-header>
+      Cliente: {{nfse.Name}}
+    </ion-card-header>
+
+    <ion-item>
+      <h3>
+        Nº da nota: {{nfse.NumberNF}}
+      </h3>
+      <ion-note item-end>
+        {{ nfse.DateEmission | date: 'dd/MM/yyyy' }}
+      </ion-note>
+    </ion-item>
+    <ion-row>
+      <ion-col text-center>
+        <a ion-button icon-left clear small (click)="openPDF(nfse.PDF)">
+          <ion-icon name="document"></ion-icon>
+          <div>Visualizar</div>
+        </a>
+      </ion-col>
+      <ion-col text-center>
+        <a ion-button icon-left clear small href='{{nfse.URL}}' target="_blank">
+          <ion-icon name="download"></ion-icon>
+          <div>Baixar</div>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 
   <ion-fab right bottom *ngIf="data">
     <button ion-fab (click)="newNfse()">

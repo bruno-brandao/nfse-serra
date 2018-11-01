@@ -38,8 +38,8 @@ export class TakerPage {
     });
   }
 
-  addTaker(){
-    this.navCtrl.push("RegisterTakerPage");
+  addTaker(taker){
+    this.navCtrl.push("RegisterTakerPage", {taker: taker});
   }
 
 }

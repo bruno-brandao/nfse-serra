@@ -33,16 +33,16 @@
                 <ion-input type="text" [(ngModel)]="company.NameFantasy"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>CNPJ</ion-label>
+                <ion-label floating>CNPJ (somente números)</ion-label>
                 <ion-input type="text" [(ngModel)]="company.CNPJ" maxLength="18" [brmasker]="{mask:'00.000.000/0000-00', len:18}"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>Inscrição Estadual</ion-label>
-                <ion-input type="text" [(ngModel)]="company.IE"></ion-input>
+                <ion-label floating>Inscrição Estadual (somente números)</ion-label>
+                <ion-input type="text" maxLength="9" [(ngModel)]="company.IE"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>Inscrição Municipal</ion-label>
-                <ion-input type="text" [(ngModel)]="company.IM"></ion-input>
+                <ion-label floating>Inscrição Municipal (somente números)</ion-label>
+                <ion-input type="text" maxLength="8" [(ngModel)]="company.IM"></ion-input>
             </ion-item>
         </ion-list>
         <ion-list no-border>
@@ -51,8 +51,8 @@
                 Contato
             </ion-list-header>
             <ion-item>
-                <ion-label floating>Telefone</ion-label>
-                <ion-input type="text" [(ngModel)]="company.Telephone"></ion-input>
+                <ion-label floating>Telefone (somente números)</ion-label>
+                <ion-input type="text" [(ngModel)]="company.Telephone" [brmasker]="{phone: true}"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label floating>Email</ion-label>
@@ -64,6 +64,10 @@
                 <ion-icon name="pin" item-start></ion-icon>
                 Endereço
             </ion-list-header>
+            <ion-item>
+                <ion-label floating>CEP (somente números)</ion-label>
+                <ion-input type="text" [(ngModel)]="company.CEP" [brmasker]="{mask:'00.000-000', len:10}"></ion-input>
+            </ion-item>
             <ion-item>
                 <ion-label floating>Rua</ion-label>
                 <ion-input type="text" [(ngModel)]="company.Street"></ion-input>
@@ -79,10 +83,6 @@
             <ion-item>
                 <ion-label floating>Estado</ion-label>
                 <ion-input type="text" [(ngModel)]="company.State"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>CEP</ion-label>
-                <ion-input type="text" [(ngModel)]="company.CEP"></ion-input>
             </ion-item>
         </ion-list>
     </div>

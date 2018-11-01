@@ -39,6 +39,10 @@ export class NfsePage {
     });
   }
 
+  openPDF(URL){
+    this.navCtrl.push("NfseViewerPage", {pdf: URL});
+  }
+
   newNfse(){
     this.navCtrl.push("NewNfsePage");
   }

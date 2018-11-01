@@ -13,7 +13,7 @@
           </h6>
       </ion-card>
       <ion-item padding>
-          <ion-label floating><span class="required"></span>Digite seu CNPJ</ion-label>
+          <ion-label floating><span class="required"></span>Digite seu CNPJ (somente números)</ion-label>
           <ion-input type="text" maxLength="18" (ionChange)="getCompanyData()" (keyup.enter)="getCompanyData()" [(ngModel)]="cnpj" [brmasker]="{mask:'00.000.000/0000-00', len:18}"></ion-input>
       </ion-item>
     </div>
@@ -26,28 +26,4 @@
       </ion-row>
     </div>
   </ion-slide>
-  <!-- <ion-slide text-center class="slide">
-    <div *ngIf="loading && !hasError" text-center padding>
-      <ion-spinner color="secondary" large></ion-spinner>
-    </div>
-    <div class="slide-header" *ngIf="!loading && !hasError">
-      <img src="assets/imgs/emp.jpg" alt="Icone slide" class="icon-header">
-  
-      <h4 class="text-header">
-        Agora informe a Inscrição Estadual
-      </h4>
-      <ion-item padding>
-          <ion-label floating><span class="required"></span>Digite seu CNPJ</ion-label>
-          <ion-input type="text" maxLength="18" (ionChange)="getCompanyData()" [(ngModel)]="cnpj" [brmasker]="{mask:'00.000.000/0000-00', len:18}"></ion-input>
-      </ion-item>
-    </div>
-    <div text-center class="error" *ngIf="hasError" padding>
-      <h3 padding>Ocorreu um erro ao tentar salvar as respostas</h3>
-      <ion-row center>
-        <ion-col text-center>
-          <button ion-button round color="homelist4" (click)="openListPage()">Tentar Novamente</button>
-        </ion-col>
-      </ion-row>
-    </div>
-  </ion-slide> -->
 </ion-slides>

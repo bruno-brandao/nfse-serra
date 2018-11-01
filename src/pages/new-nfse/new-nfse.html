@@ -32,25 +32,6 @@
       </ion-item>
     </ion-list>
 
-    <ion-list (click)="selectData('services')">
-      <ion-list-header [ngStyle]="{'background-color': nfseData?.Itens.length ? '#96bcff' : '' }">
-        <ion-icon name="list" color="cinza" item-start></ion-icon>
-        <p>Serviços</p>
-        <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
-      </ion-list-header>
-      <div *ngIf="nfseData?.Itens.length">
-        <ion-item *ngFor="let service of nfseData.Itens">
-          <span item-start>
-            {{service.Amount}}
-          </span>
-          <p text-wrap>{{service.Description}}</p>
-          <ion-note item-end>
-            R$ {{formatReal(service.Value)}}
-          </ion-note>
-        </ion-item>
-      </div>
-    </ion-list>
-
     <ion-list (click)="selectData('code')">
       <ion-list-header [ngStyle]="{'background-color':  nfseData?.CFPSId ? '#96bcff' : '' }">
         <ion-icon name="bookmark" color="cinza" item-start></ion-icon>
@@ -74,6 +55,26 @@
         <p text-wrap>{{nfseData.ActivitiesName}}</p>
       </ion-item>
     </ion-list>
+
+    <ion-list (click)="selectData('services')">
+        <ion-list-header [ngStyle]="{'background-color': nfseData?.Itens.length ? '#96bcff' : '' }">
+          <ion-icon name="list" color="cinza" item-start></ion-icon>
+          <p>Serviços</p>
+          <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
+        </ion-list-header>
+        <div *ngIf="nfseData?.Itens.length">
+          <ion-item *ngFor="let service of nfseData.Itens">
+            <span item-start>
+              {{service.Amount}}
+            </span>
+            <p text-wrap>{{service.Description}}</p>
+            <ion-note item-end>
+              R$ {{formatReal(service.Value)}}
+            </ion-note>
+          </ion-item>
+        </div>
+      </ion-list>
+
     <ion-item>
       <ion-label>Vencimento do primeiro boleto</ion-label>
       <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="date"></ion-datetime>
@@ -88,7 +89,7 @@
         Intervalo entre os boletos
       </ion-list-header>
       <ion-item>
-        <ion-range min="0" max="60" pin="true" [(ngModel)]="interval" color="secondary">
+        <ion-range min="0" max="30" pin="true" [(ngModel)]="interval" color="secondary">
           <ion-icon range-left small color="cinza" name="calendar"></ion-icon>
           <ion-icon range-right color="cinza" name="calendar"></ion-icon>
         </ion-range>

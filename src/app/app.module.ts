@@ -18,6 +18,7 @@ import { ShippingCompanyProvider } from '../providers/shipping-company/shipping-
 import { NfseProvider } from '../providers/nfse/nfse';
 import { SingletonProvider } from '../providers/singleton/singleton';
 import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { Network } from '@ionic-native/network';
 import { Device } from '@ionic-native/device';
@@ -39,6 +40,7 @@ import { TokenInterceptor } from '../providers/token-interceptor/token.intercept
       dayNames: ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado' ],
       dayShortNames: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab' ],
     }),
+    PdfViewerModule,
     IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],

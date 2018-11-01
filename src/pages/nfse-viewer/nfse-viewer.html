@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Nota Fiscal
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content>
+  <pdf-viewer [src]="pdf" [render-text]="true" [autoresize]="true" [original-size]="false"
+              style="display: block; max-width: 100vw;"
+  ></pdf-viewer>
+</ion-content>
