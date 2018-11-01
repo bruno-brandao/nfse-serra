@@ -1,11 +1,22 @@
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title *ngIf="param == 'taker'">Cliente</ion-title>
-    <ion-title *ngIf="param == 'services'">Serviços</ion-title>
-    <ion-title *ngIf="param == 'activities'">Atividades</ion-title>
-    <ion-title *ngIf="param == 'code'">Código Fiscal</ion-title>
-  </ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-row>
+				<ion-col col-2>
+					<button ion-button icon-only clear color="white" class="back-prod-button" (click)="backClickHandler()">
+						<ion-icon name="arrow-back"></ion-icon>
+					</button>
+				</ion-col>
+				<ion-col col-10 no-padding>
+					<ion-label class="header-list">
+              <ion-title *ngIf="param == 'taker'">Clientes</ion-title>
+              <ion-title *ngIf="param == 'services'">Serviços</ion-title>
+              <ion-title *ngIf="param == 'activities'">Atividades</ion-title>
+              <ion-title *ngIf="param == 'code'">Código Fiscal</ion-title>
+					</ion-label>
+				</ion-col>
+    </ion-row>
+  </ion-toolbar>
 
 </ion-header>
 
@@ -15,7 +26,7 @@
   <div *ngIf="data">
     <div *ngIf="param == 'taker'">
         <ion-list>
-          <button *ngFor="let taker of data" ion-item (click)="selectData('taker')">
+          <button *ngFor="let taker of data" ion-item (click)="selectTaker(taker)">
             <ion-icon name="contact" color="cinza" item-start></ion-icon>
             <p>{{taker.Name}}</p>
             <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
@@ -24,18 +35,31 @@
     </div>
     <div *ngIf="param == 'services'">
         <ion-list>
-          <button ion-item *ngFor="let service of data" (click)="selectData('taker')">
-            <p>{{service.Description}}</p>
-            <ion-note item-end>
-                R$ {{formatReal(service.Value)}}
-            </ion-note>
+          <ion-list-header>
+            Selecione os serviços
+          </ion-list-header>
+          <button ion-item *ngFor="let service of data">
+            <h2>{{service.Description}}</h2>
+            <p>R$ {{formatReal(service.Value)}}</p>
+            <button ion-button item-end *ngIf="!service.Amount" (click)="addServices(service)">Adicionar</button>
+            <div item-right class="buttons" *ngIf="service.Amount">
+                <button ion-button (click)="removeServices(service)">
+                  <ion-icon name="remove"></ion-icon>
+                </button>
+                <span style="display: inline-block; padding: 0 5px;">
+                  <p>{{service.Amount}}</p>
+                </span>
+                <button ion-button (click)="addServices(service)">
+                  <ion-icon name="add"></ion-icon>
+                </button>
+            </div>
           </button>
       
         </ion-list>
     </div>
     <div *ngIf="param == 'code'">
         <ion-list>
-          <button ion-item *ngFor="let code of data" (click)="selectData('taker')">
+          <button ion-item *ngFor="let code of data" (click)="selectCode(code)">
             <ion-note item-start>
                 {{code.CFPSCod}}
             </ion-note>
@@ -46,13 +70,10 @@
     </div>
     <div *ngIf="param == 'activities'">
         <ion-list>
-          <button ion-item *ngFor="let actv of data" (click)="selectData('taker')">
-            <ion-note item-start>
-                {{actv.CFPSCod}}
-            </ion-note>
+          <button ion-item *ngFor="let actv of data" (click)="selectActivity(actv)">
+            <ion-icon name="ios-arrow-back" color="cinza" item-start></ion-icon>
             <p text-wra>{{actv.Description}}</p>
           </button>
-      
         </ion-list>
     </div>
   </div>

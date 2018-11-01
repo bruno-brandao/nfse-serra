@@ -86,8 +86,8 @@ export class EndpointsProvider {
   }
 
   //NFeS
-  public getNFeS(){
-    return this.route_api + 'api/NFeS';
+  public setNFeS(){
+    return this.route_api + 'api/NFeS/Issue';
   }
 
   //TaxpayerActivities

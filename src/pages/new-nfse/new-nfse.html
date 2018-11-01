@@ -2,40 +2,100 @@
 
   <ion-navbar color="primary">
     <ion-title>Emitir NFS-e</ion-title>
+
+    <ion-buttons end>
+        <button ion-button icon-only clear type="button" (click)="newNfse()">
+            Enviar
+        </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-
+  <div padding class="alert" *ngIf="showAlert">
+    <p>Para emissão da nota fiscal cadastre Inscrição Municipal e Inscrição Estadual nos dados da sua empresa</p>
+  </div>
   <ion-list>
     <ion-list-header>
       Dados da nota
     </ion-list-header>
-    <button ion-item (click)="selectData('taker')">
-      <ion-icon name="contact" color="cinza" item-start></ion-icon>
-      <p>Cliente</p>
-      <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
-    </button>
+    <ion-list (click)="selectData('taker')">
+      <ion-list-header [ngStyle]="{'background-color':  nfseData?.TakerId ? '#96bcff' : '' }">
+        <ion-icon name="contact" color="cinza" item-start></ion-icon>
+        <p>Cliente</p>
+        <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
+      </ion-list-header>
+      <ion-item *ngIf="nfseData?.TakerId">
+        <p>{{nfseData.TakerName}}</p>
+      </ion-item>
+    </ion-list>
 
-    <button ion-item (click)="selectData('services')">
-      <ion-icon name="list" color="cinza" item-start></ion-icon>
-      <p>Serviços</p>
-      <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
-    </button>
+    <ion-list (click)="selectData('services')">
+      <ion-list-header [ngStyle]="{'background-color': nfseData?.Itens.length ? '#96bcff' : '' }">
+        <ion-icon name="list" color="cinza" item-start></ion-icon>
+        <p>Serviços</p>
+        <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
+      </ion-list-header>
+      <div *ngIf="nfseData?.Itens.length">
+        <ion-item *ngFor="let service of nfseData.Itens">
+          <span item-start>
+            {{service.Amount}}
+          </span>
+          <p text-wrap>{{service.Description}}</p>
+          <ion-note item-end>
+            R$ {{formatReal(service.Value)}}
+          </ion-note>
+        </ion-item>
+      </div>
+    </ion-list>
 
-    <button ion-item (click)="selectData('code')">
-      <ion-icon name="bookmark" color="cinza" item-start></ion-icon>
-      <p>Código Fiscal</p>
-      <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
-    </button>
+    <ion-list (click)="selectData('code')">
+      <ion-list-header [ngStyle]="{'background-color':  nfseData?.CFPSId ? '#96bcff' : '' }">
+        <ion-icon name="bookmark" color="cinza" item-start></ion-icon>
+        <p>Código Fiscal</p>
+        <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
+      </ion-list-header>
+      <ion-item *ngIf="nfseData?.CFPSId">
+        <ion-icon name="ios-arrow-forward" color="cinza" item-start></ion-icon>
+        <p text-wrap>{{nfseData.CFPSName}}</p>
+      </ion-item>
+    </ion-list>
 
-    <button ion-item (click)="selectData('activities')">
-      <ion-icon name="ios-create" color="cinza" item-start></ion-icon>
-      <p>Atividades</p>
-      <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
-    </button>
+    <ion-list (click)="selectData('activities')">
+      <ion-list-header [ngStyle]="{'background-color':  nfseData?.TaxpayerActivitiesId ? '#96bcff' : '' }">
+        <ion-icon name="ios-create" color="cinza" item-start></ion-icon>
+        <p>Atividades</p>
+        <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
+      </ion-list-header>
+      <ion-item *ngIf="nfseData?.TaxpayerActivitiesId">
+        <ion-icon name="ios-arrow-forward" color="cinza" item-start></ion-icon>
+        <p text-wrap>{{nfseData.ActivitiesName}}</p>
+      </ion-item>
+    </ion-list>
+    <ion-item>
+      <ion-label>Vencimento do primeiro boleto</ion-label>
+      <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="date"></ion-datetime>
+    </ion-item>
 
+    <ion-item>
+      <ion-label>Quantidade de boletos</ion-label>
+      <ion-input type="number" name="qtd" [(ngModel)]="qtd" ></ion-input>
+    </ion-item>
+    <ion-list no-border>
+      <ion-list-header>
+        Intervalo entre os boletos
+      </ion-list-header>
+      <ion-item>
+        <ion-range min="0" max="60" pin="true" [(ngModel)]="interval" color="secondary">
+          <ion-icon range-left small color="cinza" name="calendar"></ion-icon>
+          <ion-icon range-right color="cinza" name="calendar"></ion-icon>
+        </ion-range>
+      </ion-item>
+    </ion-list>
   </ion-list>
+  <div padding class="alert">
+    <p>Total: R$ {{formatReal(nfseData.Total)}}</p>
+  </div>
 </ion-content>
