@@ -124,4 +124,12 @@ export class EndpointsProvider {
   public getCFPS(): string{
     return this.route_api + 'api/CFPS/Get';
   }
+
+  public getQuestions(){
+    return this.route_api + 'api/Questions/Get';
+  }
+
+  public saveAnswer(){
+    return this.route_api + 'api/Responses/Post';
+  }
 }

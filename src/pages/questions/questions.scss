@@ -1,0 +1,40 @@
+page-questions {
+
+    .slide{
+        .slide-header{
+            top: 0%;
+            position: absolute;
+            height: 40vh;
+            width: 100%;
+           // background: linear-gradient(to right, #c2383d, #c2175b) !important;
+            // /color: white;
+        }
+    }
+
+    .slide-bottom{
+        //background: white;
+        top: 40vh;
+        position: absolute;
+        height: 20vh;
+        width: 100%;
+    }
+
+    .icon-header{
+        margin-top: 15%;
+        height: 25%;
+    }
+
+    .text-header{
+        padding: 20% 15% 0 15%;
+    }
+
+    .text{
+        font-family: Light;
+        padding: 5% 5% 0 5%;
+    }
+
+    .button-next {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

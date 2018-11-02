@@ -64,4 +64,24 @@ export class UserServiceProvider {
   getToken(){
     return this.user.SessionHash;
   }
+
+  getQuestions(){
+    return new Promise((resolve, reject)=>{
+      this.http.get(this.endpoint.getQuestions()).subscribe(data=>{
+        resolve(data);
+      }, error =>{
+        reject(error);
+      });
+    });
+  }
+
+  saveAnswer(data){
+    return new Promise((resolve, reject)=>{
+      this.http.post(this.endpoint.saveAnswer(), data).subscribe((data: any) => {
+        resolve(data);
+      }, err => {
+        reject(err);
+      });
+    });
+  }
 }
