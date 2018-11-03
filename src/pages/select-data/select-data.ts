@@ -57,7 +57,13 @@ export class SelectDataPage {
         })
       }
     }).catch(error=>{
-      this.singleton.presentToast(this.errorHandler.toString(error));
+      let message = this.errorHandler.toString(error);
+      if(message == "Não foram encontrados registros!"){
+        this.data = [];
+      }else{
+        this.singleton.presentToast(message);
+      }
+      
     });
   }
 
@@ -65,7 +71,12 @@ export class SelectDataPage {
     this.takerProvider.getAllTakers().then(data=>{
       this.data = data;
     }).catch(error=>{
-      this.singleton.presentToast(this.errorHandler.toString(error));
+      let message = this.errorHandler.toString(error);
+      if(message == "Não foram encontrados registros!"){
+        this.data = [];
+      }else{
+        this.singleton.presentToast(message);
+      }
     });
   }
 
@@ -73,7 +84,12 @@ export class SelectDataPage {
     this.nfProvider.getCodes().then(data=>{
       this.data = data;
     }).catch(error=>{
-      this.singleton.presentToast(this.errorHandler.toString(error));
+      let message = this.errorHandler.toString(error);
+      if(message == "Não foram encontrados registros!"){
+        this.data = [];
+      }else{
+        this.singleton.presentToast(message);
+      }
     });
   }
 
@@ -81,7 +97,12 @@ export class SelectDataPage {
     this.nfProvider.getActivities().then(data=>{
       this.data = data;
     }).catch(error=>{
-      this.singleton.presentToast(this.errorHandler.toString(error));
+      let message = this.errorHandler.toString(error);
+      if(message == "Não foram encontrados registros!"){
+        this.data = [];
+      }else{
+        this.singleton.presentToast(message);
+      }
     });
   }
 

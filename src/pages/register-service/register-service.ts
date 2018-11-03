@@ -29,7 +29,7 @@ export class RegisterServicePage {
   }
 
   saveService(){
-    this.service.Value = this.service.Value.replace(",", ".");
+    this.service.Value = this.service.Value.toString().replace(",", ".");
     this.singleton.showLoading();
     if(!this.service.ServicesId){
       this.servicesProvider.saveService(this.service).then((data)=>{

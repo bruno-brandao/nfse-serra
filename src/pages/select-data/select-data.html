@@ -32,6 +32,11 @@
             <ion-icon name="ios-arrow-forward" color="cinza" item-end></ion-icon>
           </button>
         </ion-list>
+        <div class="empty" *ngIf="data && !data.length">
+            <div class="empty-content">
+                <h2 ion-text>Você não possui nenhum cliente cadastrado</h2>
+            </div>
+        </div>
     </div>
     <div *ngIf="param == 'services'">
         <ion-list>
@@ -56,6 +61,11 @@
           </button>
       
         </ion-list>
+        <div class="empty" *ngIf="data && !data.length">
+            <div class="empty-content">
+                <h2 ion-text>Você não possui nenhum serviço cadastrado</h2>
+            </div>
+        </div>
     </div>
     <div *ngIf="param == 'code'">
         <ion-list>
@@ -67,6 +77,11 @@
           </button>
       
         </ion-list>
+        <div class="empty" *ngIf="data && !data.length">
+            <div class="empty-content">
+                <h2 ion-text>Nenhum código cadastrado</h2>
+            </div>
+        </div>
     </div>
     <div *ngIf="param == 'activities'">
         <ion-list>
@@ -75,6 +90,11 @@
             <p text-wra>{{actv.Description}}</p>
           </button>
         </ion-list>
+        <div class="empty" *ngIf="data && !data.length">
+            <div class="empty-content">
+                <h2 ion-text>Nenhuma atividade cadastrada</h2>
+            </div>
+        </div>
     </div>
   </div>
 </ion-content>

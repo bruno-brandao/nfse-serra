@@ -27,7 +27,6 @@ export class ErrorHandlerProvider implements ErrorHandler {
   }
 
   toString(error: any) {
-    console.log(error)
     let message = '';
     try {
       if(typeof error === 'string'){

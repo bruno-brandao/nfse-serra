@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
-import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { SingletonProvider } from '../../providers/singleton/singleton';
 import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
+import { CompanyProvider } from '../../providers/company/company';
 
 @IonicPage()
 @Component({
@@ -19,11 +19,11 @@ export class QuestionsPage {
   @ViewChild(Slides) slides: Slides;
   
   constructor(
+    public companyProvider: CompanyProvider,
     public errorHandler: ErrorHandlerProvider,
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public singleton: SingletonProvider,
-    private userProvider: UserServiceProvider
+    public singleton: SingletonProvider
   ) {
   }
 
@@ -32,34 +32,51 @@ export class QuestionsPage {
   }
 
   getQuestions(){
-    this.userProvider.getQuestions().then((data: Array<any>)=>{
+    this.companyProvider.getQuestions().then((data: Array<any>)=>{
       this.questions = data;
       this.question = this.questions[this.index];
-      console.log(this.question);
     }).catch(error=>{
-      this.singleton.presentToast(this.errorHandler.toString(error));
+      let message = this.errorHandler.toString(error);
+      if(message == "Não existe questões cadastradas!"){
+        this.question = "";
+      }else
+        this.singleton.presentToast(message);
+      
     });
   }
 
-	nextSlide(answer) {
-    this.index += 1;
-    this.question = this.questions[this.index];
-		this.slides.slideNext(350);
-	}
-
-	saveAnswer(question) {
+	nextSlide() {
     this.singleton.showLoading("Salvando resposta, aguarde...");
+    let answer = {
+      CompanyId: this.companyProvider.company.CompanyId,
+      QuestionId: this.question.QuestionId,
+      OptionId: this.answerId
+    }
+    this.companyProvider.saveAnswer(answer).then(()=>{
+      this.singleton.dismissLoading();
+      this.index += 1;
+      if(this.questions.length == this.index){
+        this.question = "";
+      }else{
+        this.question = this.questions[this.index];
+      }
+      console.log(this.question)
+      this.slides.slideNext(350);
+    }).catch(error=>{
+      this.singleton.dismissLoading();
+      this.singleton.presentToast(this.errorHandler.toString(error));
+    });
 	}
 
-	nextQuestion(index, answerId){
-		let question = null;
-		Object.keys(this.questions).forEach(key => {
-		  if(this.questions[key].answered == false){
-			question = this.questions[key];
-			this.questionKey = key;
-		  }
-		});
-		return question;
-	}
+	// nextQuestion(index, answerId){
+	// 	let question = null;
+	// 	Object.keys(this.questions).forEach(key => {
+	// 	  if(this.questions[key].answered == false){
+	// 		question = this.questions[key];
+	// 		this.questionKey = key;
+	// 	  }
+	// 	});
+	// 	return question;
+	// }
 
 }

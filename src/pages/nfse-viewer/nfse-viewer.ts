@@ -9,12 +9,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class NfseViewerPage {
 
   pdf: any;
+  url: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
   ) {
     this.pdf = this.base64ToArrayBuffer(navParams.get("pdf"));
+    this.url =  navParams.get("url");
   }
 
   base64ToArrayBuffer(base64) {

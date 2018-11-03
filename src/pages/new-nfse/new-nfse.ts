@@ -100,17 +100,17 @@ export class NewNfsePage {
     this.nfseData.Invoices = [];
     for (let index = 0; index < this.qtd; index++) {
       let int = !this.interval ? 0 : this.interval; 
-      date.setDate((date.getDate() + int));
       this.nfseData.Invoices.push({
         Number: index + 1,
         Maturity: date.toISOString().slice(0,10),
         Value: value
       });
+      date.setDate((date.getDate() + int));
     }
     this.nfseProvider.newNfse(this.nfseData).then((data: any)=>{
       this.singleton.dismissLoading();
       this.app.getRootNav().setRoot("NfsePage", {}, { animate: true, direction: "back" });
-      this.app.getRootNav().insert(1, "NfseViewerPage", { pdf: data.PDF });
+      this.app.getRootNav().insert(1, "NfseViewerPage", { pdf: data.PDF, url: data.UrlNFeS });
     }).catch(error=>{
       this.singleton.dismissLoading();
       this.singleton.presentToast(this.errorHandler.toString(error));
