@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, App, Events } from 'ionic-angular';
 import { NfseProvider, NFSE } from '../../providers/nfse/nfse';
 import { CompanyProvider } from '../../providers/company/company';
 import { SingletonProvider } from '../../providers/singleton/singleton';
@@ -23,6 +23,7 @@ export class NewNfsePage {
     private app: App,
     public companyProvider: CompanyProvider,
     public errorHandler: ErrorHandlerProvider,
+    public events: Events,
     public modalCtrl: ModalController,
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -50,17 +51,26 @@ export class NewNfsePage {
     let selectModal = this.modalCtrl.create("SelectDataPage", { select: type, data: this.nfseData });
     selectModal.present();
 
-    selectModal.onDidDismiss(data =>{
+    this.events.subscribe('modalDidDismissedEvent', (data) => {
       this.nfseData = data; 
       this.nfseData.Total = 0;
       this.nfseData.Itens.forEach((item)=>{
         this.nfseData.Total += item.Value * item.Amount;
       });
+      this.events.unsubscribe('modalDidDismissedEvent');
     });
+
+    // selectModal.onDidDismiss(data =>{
+    //   this.nfseData = data; 
+    //   this.nfseData.Total = 0;
+    //   this.nfseData.Itens.forEach((item)=>{
+    //     this.nfseData.Total += item.Value * item.Amount;
+    //   });
+    // });
   }
 
   formatReal(value){
-    return parseFloat(value).toFixed(2).toString().replace(".",",")
+    return value ? parseFloat(value).toFixed(2).toString().replace(".",",") : "0,00"
   }
 
   validate(){

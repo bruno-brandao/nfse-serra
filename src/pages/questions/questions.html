@@ -12,7 +12,9 @@
 <ion-content>
   <ion-slides>
     <ion-slide text-center class="slide">
-      <ion-spinner name="crescent" *ngIf="!question && question != ''"></ion-spinner>
+      <div class="spinner-div" *ngIf="!question && question != ''">
+          <ion-spinner name="crescent"></ion-spinner>
+      </div>
       <div class="slide-header" *ngIf="question && question != ''" padding>
         <h2 class="text-header">
           {{question.Question}}
@@ -21,7 +23,7 @@
       <div class="slide-bottom" *ngIf="question && question != ''">
         <ion-list radio-group [(ngModel)]="answerId">
           <ion-item *ngFor="let answer of question.ListOptions">
-            <ion-label>{{answer.Option}}</ion-label>
+            <ion-label text-wrap>{{answer.Option}}</ion-label>
             <ion-radio [value]="answer.OptionId"></ion-radio>
           </ion-item>
         </ion-list>
@@ -29,9 +31,10 @@
 
       <div class="button-next" text-center (click)="nextSlide()" *ngIf="question && question != ''">
         <button ion-button round>
-          Próximo >
+          Próximo
         </button>
       </div>
+      <p text-center *ngIf="question && question != ''">{{index + 1}} de {{questions.length}}</p>
 
 
       <div *ngIf="question == ''">

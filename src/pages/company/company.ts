@@ -35,6 +35,9 @@ export class CompanyPage {
 
   saveCompanyData(){
     this.singleton.showLoading();
+    this.company.CNPJ = this.company.CNPJ.replace(/\D/g, '');
+    this.company.Telephone = this.company.Telephone.split('/')[0].replace(/\D/g, '');
+    this.company.CEP = this.company.CEP.replace(/\D/g, '');
     this.companyProvider.putCompany(this.company).then(data=>{
       this.company = data;
       this.singleton.presentToast("Dados atualizados com sucesso!");

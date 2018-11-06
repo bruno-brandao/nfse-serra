@@ -96,7 +96,7 @@
       </ion-item>
     </ion-list>
   </ion-list>
-  <div padding class="alert">
-    <p>Total: R$ {{formatReal(nfseData.Total)}}</p>
+  <div padding class="alert" *ngIf="nfseData">
+    <p>Total: R$ {{formatReal(nfseData?.Total)}}</p>
   </div>
 </ion-content>

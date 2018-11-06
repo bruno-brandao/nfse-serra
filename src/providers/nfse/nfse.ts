@@ -36,6 +36,8 @@ export class NFSE {
 @Injectable()
 export class NfseProvider {
 
+  nfseData: NFSE;
+
   constructor(
     private companyProvider: CompanyProvider,
     private endpoints: EndpointsProvider,

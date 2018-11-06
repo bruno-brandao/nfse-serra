@@ -24,6 +24,7 @@ export class LoginPage {
     private storage: Storage,
     public userProvider: UserServiceProvider
   ) {
+    this.storage.clear();
     this.todo = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
